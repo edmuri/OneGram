@@ -32,7 +32,7 @@
 .profile-pic:hover::after {
     opacity: 1;
 }
-=======
+
 /* profile photo css */ 
 .profile-pic {
     cursor: pointer;
@@ -66,4 +66,3 @@
 .profile-pic:hover::after {
     opacity: 1;
 }
-

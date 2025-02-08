@@ -37,15 +37,18 @@
             <div class="tab">TAGGED</div>
         </div>
 
-        <!-- basic grid for now - want to add different sizing and options -->
-        <div class="grid">
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
+        <!--button to add post to grid/ must implement functionality-->
+        <div class="grid-controls">
+            <button class="add-post-btn" onclick="addPost()">
+                <span>+ Add New Post</span>
+            </button>
         </div>
+
+        <!-- basic grid for now - want to add different sizing and options -->
+        <div class="grid" id="postsGrid">
+
+        </div>
+
     </div>
 
     <!-- the edit panel -->
@@ -73,6 +76,21 @@
         </div>
 
     <script>
+        //adds new post spot to grid 
+        function addPost() {
+            //appends new html element to grid
+            const grid = document.getElementById('postsGrid');
+            const newPost = document.createElement('div');
+            grid.appendChild(newPost);
+            //sets our newly created post to the grid-item class to apply css styling
+            newPost.className = 'grid-item';
+            
+            //update post count in profile numbers
+            const postCountElement = document.querySelector('.stat-number');
+            const currentCount = parseInt(postCountElement.textContent);
+            postCountElement.textContent = currentCount + 1;
+        }
+
         // open edit panel when clicked 'edit profile'
         function toggleEditPanel() {
             const panel = document.getElementById('editPanel');

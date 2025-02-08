@@ -48,6 +48,44 @@
         </div>
     </div>
 
+    <!-- the edit panel -->
+    <div class="edit-panel" id="editPanel">
+        <!-- main edit menu -->
+        <div class="panel-content" id="mainMenu">
+            <div class="edit-panel-header">
+                <h2>Edit Profile</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+            <div class="options-list">
+                <div class="option-item" onclick="openSubmenu('presetsMenu')">
+                    <div class="option-name">Profile Themes</div>
+                    <div class="option-description">Change the visual display of your profile</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-name">Grid Sizing</div>
+                    <div class="option-description">Update the size and display of your Instagram grid</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-name">Communities</div>
+                    <div class="option-description">Create or manage a Community</div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        // open edit panel when clicked 'edit profile'
+        function toggleEditPanel() {
+            const panel = document.getElementById('editPanel');
+            panel.classList.toggle('open');
+            
+            // takes you back to the main menu when you close
+            if (!panel.classList.contains('open')) {
+                closeSubmenu('presetsMenu');
+            }
+        }
+
+        // going to put options here
+    </script>
 
     <style>
     * {
@@ -205,5 +243,98 @@
         background-color: rgb(200, 200, 200);
         border-radius: 4px;
         transition: background-color 0.3s ease;
+    }
+
+    /* edit panel stuff */ 
+    .edit-panel {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 320px;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .panel-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease-in-out;
+        background: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .scroll-container {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    .options-list {
+        padding: 8px 0;
+    }
+
+    .option-item {
+        padding: 16px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .option-item:hover {
+        background-color: green;
+    }
+
+    .option-name {
+        font-size: 16px;
+        /* placeholder color for when we add styles */ 
+        color: yellow;
+        margin-bottom: 4px;
+    }
+
+    .option-description {
+        font-size: 14px;
+        /* placeholder color for when we add styles */ 
+        color: red;
+    }
+
+    .back-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        /* placeholder color for when we add styles */ 
+        color: blue;
+        font-size: 24px;
+        padding: 0 8px;
+    }
+
+    .edit-panel.open {
+        right: 0;
+    }
+
+    .edit-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid grey;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: darkgray;
+    }
+
+    .close-btn:hover {
+        color: lightgray;
     }
     </style>

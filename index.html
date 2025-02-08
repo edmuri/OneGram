@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile</title>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <!-- photo is empty for rn -->
+            <div class="profile-pic"></div>
+            <div class="profile-info">
+                <div class="username">username</div>
+                <!-- buttons for user to click - edit is the most important here -->
+                <div class="profile-actions">
+                    <button class="follow-btn">Follow</button>
+                    <button class="edit-btn" onclick="toggleEditPanel()">Edit Profile</button>
+                </div>
+                <div class="stats">
+                    <!-- random filler info - might change this -->
+                    <div class="stat"><span class="stat-number">123</span> posts</div>
+                    <div class="stat"><span class="stat-number">1.2K</span> followers</div>
+                    <div class="stat"><span class="stat-number">500</span> following</div>
+                </div>
+                <div class="bio">
+                    Display Name<br>
+                    Ur bio<br>
+                    <a href="#">linklinkwhatever.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-tabs">
+            <div class="tab active">POSTS</div>
+            <div class="tab">REELS</div>
+            <div class="tab">TAGGED</div>
+        </div>
+
+        <!-- basic grid for now - want to add different sizing and options -->
+        <div class="grid">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+    </div>
+
+
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+        /* for now - were gonna have this update with user settings */ 
+        background-color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .container {
+        max-width: 935px;
+        margin: 0 auto;
+        padding: 30px 20px;
+    }
+
+    .profile-header {
+        display: flex;
+        gap: 80px;
+        margin-bottom: 44px;
+        /* this is gonna change with user settings */ 
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        transition: background 0.3s ease;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        /* will change this to fit user */ 
+        background-color: lightgrey;
+        flex-shrink: 0;
+        transition: background-color 0.3s ease;
+    }
+
+    .profile-info {
+        flex-grow: 1;
+    }
+
+    .profile-actions {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .username {
+        font-size: 28px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        /* should update with color choices */ 
+        color: rgb(47, 47, 47);
+        transition: color 0.3s ease;
+    }
+
+    .follow-btn {
+        /* change with user choices */ 
+        background-color: rgb(77, 77, 131);
+        color: white;
+        border: none;
+        padding: 5px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .follow-btn:hover {
+        /* change with user stuff eventually */ 
+        background-color: lightgrey;
+    }
+
+    .edit-btn {
+        background-color: transparent;
+        border: 1px solid grey;
+        color: black;
+        padding: 5px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .edit-btn:hover {
+        background-color: grey;
+    }
+
+    .stats {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 20px;
+        color: rgb(47, 47, 47);
+        transition: color 0.3s ease;
+    }
+
+    .stat-number {
+        font-weight: 600;
+    }
+
+    .bio {
+        font-size: 16px;
+        line-height: 1.5;
+        color: rgb(47, 47, 47);
+        transition: color 0.3s ease;
+    }
+
+    .bio a {
+        /* will change this with user input stuff */ 
+        color: blue;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .content-tabs {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid rgb(47, 47, 47);
+        margin-top: 40px;
+        transition: border-color 0.3s ease;
+    }
+
+    .tab {
+        padding: 20px;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+        color: rgb(47, 47, 47);
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+    }
+
+    .tab.active {
+        color: rgb(158, 158, 158);
+        border-top: 1px solid rgb(47, 47, 47);
+        margin-top: -1px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-top: 20px;
+    }
+
+    .grid-item {
+        aspect-ratio: 1;
+        background-color: rgb(200, 200, 200);
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    </style>

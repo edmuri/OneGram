@@ -158,6 +158,8 @@
         gap: 12px;
     }
     
+
+    /* background and text labels */ 
     .control-group label {
         color: var(--text-color);
         font-size: 14px;
@@ -176,6 +178,7 @@
         max-width: 120px; 
     }
     
+    /* button to save the hex input stuff */ 
     .custom-colors .saveButton {
         margin-top: 12px;
         padding: 8px 16px;
@@ -194,6 +197,7 @@
         background-color: var(--button-hover);
     }
     
+    /* this is just the heading that says 'custom colors' */ 
     .custom-colors .preset-title {
         font-size: 14px;
         font-weight: 600;
@@ -201,6 +205,7 @@
         margin-bottom: 4px;
     }
     
+    /* this is the description under the custom colors header */ 
     .custom-colors .preset-desc {
         font-size: 12px;
         color: var(--secondary-text);

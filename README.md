@@ -13,6 +13,13 @@
     - Custom user profile photo crop and image gallery width size for more personalized profile pages
 
 - Connect with others of similar interests with "Communities"
-    - Find others who are into the same things as you do and view all of their posts in one space
+    - Find others who are into the same things as you do and view all of their related posts in one space
 
-## Development Process/Technology Used
+## Development/Technology/Resources
+- Front-end:
+- Back-end:
+- Other/Misc.: 
+
+### Instructions for Running
+
+### Project Team

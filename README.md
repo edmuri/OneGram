@@ -16,11 +16,14 @@
     - Find others who are into the same things as you do and view all of their related posts in one space
 
 ## Development/Technology/Resources
-- Front-end:
-- Back-end:
-- Other/Misc.: 
+- Front-end   : HTML, CSS, JavaScript
+- Back-end    : JavaScript, Python, Firebase
+- Other/Misc. : Coolers was used for generating color palettes. Pinterest was used to make mock posts and generating color palettes. 
 
 ## Instructions for Running
+For the front-end, it is required to run this in VScode with plugin LiveServer in order to display the program.
+For the back-end to work properly, Flask and Firebase needs to be installed in order for changes to be saved. They also have to be running simultaneously.
+There also required an API key for Flask to work properly.
 
 ## Project Team
 - Julia Bowman (Team Lead, Front-end, Conceptualization)

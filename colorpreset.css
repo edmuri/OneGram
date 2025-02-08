@@ -125,4 +125,87 @@
         margin-top: 16px;
     }
 
+    /* div that holds all of the custom color content */ 
+    .custom-colors {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        grid-column: 1 / -1;
+        margin: 16px 16px 16px 16px;
+    }
+    
+    .custom-colors:hover {
+        transform: scale(1.02);
+    }
+    
+    .custom-colors .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        padding: 16px;
+        background: linear-gradient(45deg, var(--background-color) 0%, var(--grid-background) 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* this is all for the custom colors */ 
+    .control-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .control-group label {
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 500;
+        min-width: 90px;
+    }
+    
+    /* input box for hex stuff */ 
+    .control-group input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background: var(--background-color);
+        color: var(--text-color);
+        max-width: 120px; 
+    }
+    
+    .custom-colors .saveButton {
+        margin-top: 12px;
+        padding: 8px 16px;
+        background-color: var(--button-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        width: 100%;
+        transition: background-color 0.2s ease;
+    }
+    
+    .custom-colors .saveButton:hover {
+        background-color: var(--button-hover);
+    }
+    
+    .custom-colors .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+    
+    .custom-colors .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
+        margin-bottom: 5px; /* keep it close to the button */ 
+        /* outline: 1px solid green;  */
+    }
+
     /* end of color preset stuff */ 

@@ -9,54 +9,49 @@
     <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
     <link rel="stylesheet" href="profileframe.css"> <!-- frames for profile photo shapes -->
     <link rel="stylesheet" href="grid.css">
-    <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="community.css"> <!-- css for the community tab -->
 
 </head>
 <body>
     <div class="container">
         <div class="profile-header">
-            <!-- photo is empty for rn -->
             <div class="profile-pic"></div>
             <div class="profile-info">
                 <div class="username">username</div>
-                <!-- buttons for user to click - edit is the most important here -->
                 <div class="profile-actions">
                     <button class="follow-btn">Follow</button>
                     <button class="edit-btn" onclick="toggleEditPanel()">Edit Profile</button>
-                </div>
+                </div> <!-- closes buttons on profile -->
                 <div class="stats">
-                    <!-- random filler info - might change this -->
                     <div class="stat"><span class="stat-number">123</span> posts</div>
                     <div class="stat"><span class="stat-number">1.2K</span> followers</div>
                     <div class="stat"><span class="stat-number">500</span> following</div>
-                </div>
+                </div> <!-- closes follwer number info -->
                 <div class="bio">
                     Display Name<br>
                     Ur bio<br>
                     <a href="#">linklinkwhatever.com</a>
-                </div>
-            </div>
-        </div>
+                </div> <!-- closes bio -->
+            </div> <!-- closes info in profile -->
+        </div> <!-- closes the profile header -->
 
         <div class="content-tabs">
             <div class="tab active">POSTS</div>
             <div class="tab">REELS</div>
             <div class="tab">TAGGED</div>
-        </div>
+        </div> <!-- closes the tabs for reels and stuff -->
 
-        <!--button to add post to grid/ must implement functionality-->
+        <!-- grid controls here -->
         <div class="grid-controls">
             <button class="add-post-btn" onclick="openAddPostModal()">
                 <span>+</span> Add New Post
             </button>
-        </div>
+        </div> <!-- closes the button to add post -->
 
-        <!-- basic grid for now - want to add different sizing and options -->
         <div class="grid" id="postsGrid">
+        </div> <!-- closes the posts grid -->
 
-        </div>
-
-        <!-- updated to now include field for uploading image-->
+        <!-- keep modal in the container -->
         <div class="modal" id="addPostModal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,78 +71,69 @@
                         <button class="cancel-btn" onclick="closeAddPostModal()">Cancel</button>
                         <button class="submit-btn" onclick="createPost()">Create Post</button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> <!-- closes the body of text inside modal -->
+            </div> <!-- closes content inside modal -->
+        </div> <!-- closes popup thing that adds a post -->
+    </div> <!-- closes container that holds profile info -->
 
-    </div>
-
-    <!-- the edit panel -->
+    <!-- edit panel that's outside of the main containern-- this was issue -->
     <div class="edit-panel" id="editPanel">
-        <!-- main edit menu -->
         <div class="panel-content" id="mainMenu">
             <div class="edit-panel-header">
                 <h2>Edit Profile</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div>
+            </div> <!-- closes the panel header (with the close button [no back button here bc nowhere to go back to])-->
             <div class="options-list">
-                <!-- user clicks and menu opens inside the existing edit menu -->
                 <div class="option-item" onclick="openSubmenu('presetsMenu')">
                     <div class="option-name">Profile Themes</div>
                     <div class="option-description">Change the visual display of your profile</div>
-                </div>
-                <!--added onclick function for this submenu option-->
+                </div> <!-- closes color presets option -->
                 <div class="option-item" onclick="openSubmenu('gridMenu')">
                     <div class="option-name">Grid Sizing</div>
                     <div class="option-description">Update the size and display of your Instagram grid</div>
-                </div>
+                </div> <!-- closees grid option -->
                 <div class="option-item" onclick="openSubmenu('communityMenu')">
                     <div class="option-name">Communities</div>
                     <div class="option-description">Create or manage a Community</div>
-                </div>
+                </div> <!-- closes community option -->
                 <button onclick="save_settings()">SAVE SETTINGS</button>
-            </div>
-            
-        </div>
+            </div> <!-- closes the options list div (contains the three items)-->
+        </div> <!-- closes panel content for main menu (the three options for customizations)-->
 
-        <!-- submenu that opens inside of menu -->
-        <!-- will add colors -->
         <div class="panel-content submenu" id="presetsMenu">
             <div class="edit-panel-header">
-                <!-- user clicks and menu is closed -->
                 <button class="back-btn" onclick="closeSubmenu('presetsMenu')">←</button>
                 <h2>Color Presets</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div>
+            </div> <!-- closes edit panel header (close and back icons)-->
 
-            <!-- container to allow scroll so we can add way more presets later -->
             <div class="scroll-container">
                 <div class="color-presets">
                     <div class="color-preset" onclick="setTheme('minimal')" data-theme="minimal">
                         <div class="preset-preview minimal"></div>
                         <div class="preset-title">Minimal</div>
                         <div class="preset-desc">Clean and Default</div>
-                    </div>
+                    </div> <!-- closes minimal -->
                     <div class="color-preset" onclick="setTheme('citrus')">
                         <div class="preset-preview citrus"></div>
                         <div class="preset-title">Citrus</div>
                         <div class="preset-desc">Vibrant and Energetic</div>
-                    </div>
+                    </div> <!-- closes citrus -->
                     <div class="color-preset" onclick="setTheme('professional')">
                         <div class="preset-preview professional"></div>
                         <div class="preset-title">Professional</div>
                         <div class="preset-desc">Clear and Clean</div>
-                    </div>
+                    </div> <!-- closes professional -->
                     <div class="color-preset" onclick="setTheme('space')">
                         <div class="preset-preview space"></div>
                         <div class="preset-title">Space</div>
                         <div class="preset-desc">Shooting Star</div>
-                    </div>
+                    </div> <!-- closes space -->
                     <div class="color-preset" onclick="setTheme('cherryblossom')">
                         <div class="preset-preview cherryblossom"></div>
                         <div class="preset-title">Cherry Blossom</div>
                         <div class="preset-desc">Spring and Renewal</div>
-                    </div>
+                    </div> <!-- closes cherry blossom -->
                 </div> <!-- closes color presets -->
 
                 <div class="color-preset custom-colors">
@@ -160,14 +146,12 @@
                             <label for="text-color">Text:</label>
                             <input id="text-color">
                         </div>
-                    </div>
+                    </div> <!-- closes custom preset preview -->
                     <div class="preset-title">Custom Colors</div>
                     <div class="preset-desc">Create your own color scheme</div>
-                    <button class = 'saveButton' onclick=saveNewTheme()>Save</button>
-                </div>
-            </div>
+                    <button class='saveButton' onclick="saveNewTheme()">Save</button>
+                </div> <!-- closes custom colors preset -->
 
-                <!-- profile photo frame options -->
                 <div class="section-header">
                     <h3>Profile Photo Frames</h3>
                 </div>
@@ -182,20 +166,17 @@
                         <div class="preset-title">Square</div>
                         <div class="preset-desc">Rounded square frame</div>
                     </div>
-                </div> <!-- closes frame preset -->
-            </div> <!-- closes scroll container -->
-        </div>
+                </div> <!-- closes frame presets - keep this inside scroll container so it isn't anchored to the bottom like before -->
+            </div> <!-- closes the scroll container -->
+        </div> <!-- closes preset menu -->
 
-        <!--submenu to control grid layout-->
-        <!--will add the functionality just testing separate submenus first-->
         <div class="panel-content submenu" id="gridMenu">
             <div class="edit-panel-header">
                 <button class="back-btn" onclick="closeSubmenu('gridMenu')">←</button>
                 <h2>Grid Layout</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div>
+            </div> <!-- closes the edit panel header (where the close and back buttons are)-->
 
-            <!--added function to change grid layout and redraw grid-->
             <div class="options-list">
                 <div class="grid-controls">
                     <label for="grid-size">Select Grid Size:</label>
@@ -204,52 +185,50 @@
                         <button class="grid-btn" onclick="changeGrid(4)">4 x 4</button>
                         <button class="grid-btn" onclick="changeGrid(5)">5 x 5</button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> <!-- closes grid controls-->
+            </div> <!-- closes option list -->
+        </div> <!-- closes the grid menu -->
         
-        <!-- communities for menu option -->
         <div class="panel-content submenu" id="communityMenu">
             <div class="edit-panel-header">
                 <button class="back-btn" onclick="closeSubmenu('communityMenu')">←</button>
                 <h2>Communities</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div>
-       
+            </div> <!-- closes the buttons to go back and close in the header -->
+        
             <div class="scroll-container">
-                <!-- community section -->
                 <div class="section-header2">
                     <h3>Create New Community</h3>
                 </div>
                 <div class="community-form">
                     <input type="text" id="communityName" placeholder="Your community name" class="community-input">
                     <button onclick="createCommunity()" class="create-community-btn">Create</button>
-                </div>
+                </div> <!-- closes the community creation -->
        
-                <!-- active in communities section -->
                 <div class="section-header">
                     <h3>Your Communities</h3>
                 </div>
+
                 <div class="communities-list" id="communitiesList">
-                    <!-- ur communities - these are gonna be filled dynamically -->
                     <div class="community-item">
                         <div class="community-info">
                             <span class="community-name">Big Chungus Lovers</span>
                             <span class="member-count">1.2K members</span>
                         </div>
                         <button class="manage-community-btn">Manage</button>
-                    </div>
+                    </div> <!-- closes the community div - this is a preset - CHANGE IT LATER -->
                     <div class="community-item">
                         <div class="community-info">
                             <span class="community-name">UIC Flames</span>
                             <span class="member-count">856 members</span>
-                        </div>
+                        </div> <!-- closes the UIC falems info - placeholder - CHANGE THIS LATER -->
                         <button class="manage-community-btn">Manage</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div> <!-- closes the community box basically -->
+                </div> <!-- closes the communities list -->
+            </div> <!-- closes the scroll container for communities -->
+        </div> <!-- closes community menu -->
+    </div> <!-- closes edit panel completely -->
+
 
     <script>
         window.gridNum = 3;

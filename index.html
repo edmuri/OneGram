@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="profileframe.css"> <!-- frames for profile photo shapes -->
     <link rel="stylesheet" href="grid.css">
     <link rel="stylesheet" href="community.css"> <!-- css for the community tab -->
+    <link rel="stylesheet" href="footer.css"> <!-- css for the footer static thing -->
 
 </head>
 <body>
@@ -74,6 +75,13 @@
                 </div> <!-- closes the body of text inside modal -->
             </div> <!-- closes content inside modal -->
         </div> <!-- closes popup thing that adds a post -->
+
+        <!-- footer with ability to post a photo -->
+        <div class="footer">
+            <button class="add-post-btn" onclick="openAddPostModal()">
+                <span>+</span> Add New Post
+            </button>
+        </div> <!-- end of footer -->
     </div> <!-- closes container that holds profile info -->
 
     <!-- edit panel that's outside of the main containern-- this was issue -->
@@ -583,4 +591,5 @@
    const b = parseInt(color.substr(5,2), 16);
    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
+
     </script>

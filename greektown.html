@@ -6,6 +6,7 @@
     <title>GreekTown Community Page</title>
     <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
     <link rel="stylesheet" href="profilepage.css"> <!-- general page styling-->
+    <link rel="stylesheet" href="tabpage.css"> <!-- general page styling-->
 </head>
 <body>
     <!-- this basically uses the same layout as the profile page but i changed the header to be able to hold an image-->
@@ -34,23 +35,45 @@
         </div> <!-- closes the header -->
 
         <div class="content-tabs">
-            <div class="tab active">POSTS</div>
-            <div class="tab">EVENTS</div>
-            <div class="tab">RESOURCES</div>
+            <div class="tab active" onclick="switchTab('0')">POSTS</div>
+            <div class="tab" onclick="switchTab('1')">EVENTS</div>
+            <div class="tab" onclick="switchTab('2')">RESOURCES</div>
         </div>
 
-        <div class="grid">
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
+        <!-- posts section to be added later -->
+        <div id="postsContent" class="tab-content active"></div>
+        
+        <!-- events section holds the list of event cards -->
+        <div id="eventsContent" class="tab-content">
+            <div class="events-container">
+                <div class="event-input">
+                    <input type="text" id="eventTitle" placeholder="Event Title">
+                    <textarea id="eventDescription" placeholder="Event Description"></textarea>
+                    <button onclick="createEvent()" class="create-event-btn">Create Event</button>
+                </div>
+                <div id="eventsList" class="events-list">
+                    
+                </div>
+            </div>
         </div>
+        
+        <!-- resources section to be added later-->
+        <div id="resourcesContent" class="tab-content"></div>
+
     </div> <!-- closes the container that holds everything just like the profile page -->
 </body>
 
 <script>
+
+    function switchTab(index) {
+        // Hide all tabs and contents
+        document.querySelectorAll('.tab, .tab-content').forEach(tab => tab.classList.remove('active'));
+        
+        // Show selected tab and content
+        document.querySelectorAll('.tab')[index].classList.add('active');
+        document.querySelectorAll('.tab-content')[index].classList.add('active');
+    }
+
     // handle header image upload with same logic as profile
     document.getElementById('headerImageInput').onchange = function() {
         const file = this.files[0];
@@ -73,6 +96,43 @@
         document.querySelector('.header-image').style.cssText = `
             background: url(${savedHeader}) center/cover;
         `;
+    }
+
+    // handles event creation by getting the text in the event card input forms
+    document.querySelector('.create-event-btn').onclick = function() {
+        const title = document.getElementById('eventTitle').value.trim();
+        const description = document.getElementById('eventDescription').value.trim();
+        
+        if (title && description) {
+            // creates the event and gets the array stored in local storage and adds it to the beginning of it
+            const event = { title, description};
+            const events = JSON.parse(localStorage.getItem('events') || '[]');
+            events.unshift(event); 
+            localStorage.setItem('events', JSON.stringify(events));
+            
+            displayEvent(event);
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventDescription').value = '';
+        }
+    };
+
+    // displays the event cards
+    function displayEvent(event) {
+        const eventsList = document.getElementById('eventsList');
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'event-card';
+        eventDiv.innerHTML = `
+            <h3>${event.title}</h3>
+            <p>${event.description}</p>
+        `;
+        eventsList.insertBefore(eventDiv, eventsList.firstChild);
+    }
+
+    // load the array of saved events
+    const savedEvents = localStorage.getItem('events');
+    if (savedEvents) {
+        const events = JSON.parse(savedEvents);
+        events.forEach(event => displayEvent(event));
     }
 </script>
 <style>

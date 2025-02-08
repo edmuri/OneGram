@@ -44,3 +44,14 @@
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
+/* this is the heading that says Select Grid Size */ 
+.grid-controls {
+    padding: 0px 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}

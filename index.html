@@ -37,17 +37,189 @@
             <div class="tab">TAGGED</div>
         </div>
 
+        <!--button to add post to grid/ must implement functionality-->
+        <div class="grid-controls">
+            <button class="add-post-btn" onclick="addPost()">
+                <span>+ Add New Post</span>
+            </button>
+        </div>
+
         <!-- basic grid for now - want to add different sizing and options -->
-        <div class="grid">
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
+        <div class="grid" id="postsGrid">
+
+        </div>
+
+    </div>
+
+    <!-- the edit panel -->
+    <div class="edit-panel" id="editPanel">
+        <!-- main edit menu -->
+        <div class="panel-content" id="mainMenu">
+            <div class="edit-panel-header">
+                <h2>Edit Profile</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+            <div class="options-list">
+                <!-- user clicks and menu opens inside the existing edit menu -->
+                <div class="option-item" onclick="openSubmenu('presetsMenu')">
+                    <div class="option-name">Profile Themes</div>
+                    <div class="option-description">Change the visual display of your profile</div>
+                </div>
+                <!--added onclick function for this submenu option-->
+                <div class="option-item" onclick="openSubmenu('gridMenu')">
+                    <div class="option-name">Grid Sizing</div>
+                    <div class="option-description">Update the size and display of your Instagram grid</div>
+                </div>
+                <div class="option-item">
+                    <div class="option-name">Communities</div>
+                    <div class="option-description">Create or manage a Community</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- submenu that opens inside of menu -->
+        <!-- will add colors -->
+        <div class="panel-content submenu" id="presetsMenu">
+            <div class="edit-panel-header">
+                <!-- user clicks and menu is closed -->
+                <button class="back-btn" onclick="closeSubmenu('presetsMenu')">←</button>
+                <h2>Color Presets</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+            
+            <!-- container to allow scroll so we can add way more presets later -->
+            <div class="scroll-container">
+                <div class="color-presets">
+                    <div class="color-preset" onclick="setTheme('minimal')" data-theme="minimal">
+                        <div class="preset-preview minimal"></div>
+                        <div class="preset-title">Minimal</div>
+                        <div class="preset-desc">Clean and Default</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('citrus')">
+                        <div class="preset-preview citrus"></div>
+                        <div class="preset-title">Citrus</div>
+                        <div class="preset-desc">Vibrant and Energetic</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('professional')">
+                        <div class="preset-preview professional"></div>
+                        <div class="preset-title">Professional</div>
+                        <div class="preset-desc">Clear and Clean</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('space')">
+                        <div class="preset-preview space"></div>
+                        <div class="preset-title">Space</div>
+                        <div class="preset-desc">Shooting Star</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--submenu to control grid layout-->
+        <!--will add the functionality just testing separate submenus first-->
+        <div class="panel-content submenu" id="gridMenu">
+            <div class="edit-panel-header">
+                <button class="back-btn" onclick="closeSubmenu('gridMenu')">←</button>
+                <h2>Grid Layout</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+
+            <!--added function to change grid layout and redraw grid-->
+            <div class="options-list">
+                <div class="grid-controls">
+                    <label for="grid-size">Select Grid Size:</label>
+                    <div class="grid-size-buttons">
+                        <button class="grid-btn active" onclick="changeGrid(3)">3 x 3</button>
+                        <button class="grid-btn" onclick="changeGrid(4)">4 x 4</button>
+                        <button class="grid-btn" onclick="changeGrid(5)">5 x 5</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <script>
+        //adds new post spot to grid 
+        function addPost() {
+            //appends new html element to grid
+            const grid = document.getElementById('postsGrid');
+            const newPost = document.createElement('div');
+            grid.appendChild(newPost);
+            //sets our newly created post to the grid-item class to apply css styling
+            newPost.className = 'grid-item';
+            
+            //update post count in profile numbers
+            const postCountElement = document.querySelector('.stat-number');
+            const currentCount = parseInt(postCountElement.textContent);
+            postCountElement.textContent = currentCount + 1;
+        }
+
+        // open edit panel when clicked 'edit profile'
+        function toggleEditPanel() {
+            const panel = document.getElementById('editPanel');
+            panel.classList.toggle('open');
+            
+            // takes you back to the main menu when you close
+            if (!panel.classList.contains('open')) {
+                closeSubmenu('presetsMenu');
+                //added closing for grid submenu as well
+                closeSubmenu('gridMenu');
+            }
+        }
+
+        /* function to get css to change so menu is shown */
+        function openSubmenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            submenu.classList.add('open');
+        }
+
+        /* css to change to close menu */
+        function closeSubmenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            submenu.classList.remove('open');
+        }
+
+        /* js to set the preset themes - this changes the colors for the elements */ 
+        function setTheme(theme) {
+            // take off all existing theme classes
+            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space');
+            
+            // add a new theme class if it's not minimal (bc minimal is default)
+            if (theme !== 'minimal') {
+                document.body.classList.add('theme-' + theme);
+            }
+            
+            // this shows visually that a selection was made
+            const presets = document.querySelectorAll('.color-preset');
+            presets.forEach(preset => {
+                preset.style.border = '1px solid var(--border-color)';
+            });
+            
+            /* makes border HARDER */ 
+            const selectedPreset = document.querySelector(`.color-preset[data-theme="${theme}"]`);
+            if (selectedPreset) {
+                selectedPreset.style.border = '2px solid var(--button-color)';
+            }
+        }
+
+        //function redraw grid layout
+        function changeGrid(value) {
+            const gridSize = value;
+            const grid = document.querySelector('.grid');
+            
+            // change grid layout columns based on selected grid
+            grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+            
+            // change gap size to fit new grid layout
+            if (gridSize === 3) {
+                grid.style.gap = '28px';
+            } else if (gridSize === 4) {
+                grid.style.gap = '20px';
+            } else {
+                grid.style.gap = '15px';
+            }
+
+        }
+    </script>
 
     <style>
     * {
@@ -58,8 +230,7 @@
     }
 
     body {
-        /* for now - were gonna have this update with user settings */ 
-        background-color: white;
+        background-color: var(--background-color);
         transition: background-color 0.3s ease;
     }
 
@@ -73,8 +244,7 @@
         display: flex;
         gap: 80px;
         margin-bottom: 44px;
-        /* this is gonna change with user settings */ 
-        background: white;
+        background: var(--header-gradient);
         padding: 40px;
         border-radius: 12px;
         transition: background 0.3s ease;
@@ -84,8 +254,7 @@
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        /* will change this to fit user */ 
-        background-color: lightgrey;
+        background-color: var(--profile-pic-bg);
         flex-shrink: 0;
         transition: background-color 0.3s ease;
     }
@@ -105,14 +274,12 @@
         font-size: 28px;
         font-weight: 300;
         margin-bottom: 20px;
-        /* should update with color choices */ 
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
     .follow-btn {
-        /* change with user choices */ 
-        background-color: rgb(77, 77, 131);
+        background-color: var(--button-color);
         color: white;
         border: none;
         padding: 5px 24px;
@@ -123,14 +290,13 @@
     }
 
     .follow-btn:hover {
-        /* change with user stuff eventually */ 
-        background-color: lightgrey;
+        background-color: var(--button-hover);
     }
 
     .edit-btn {
         background-color: transparent;
-        border: 1px solid grey;
-        color: black;
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
         padding: 5px 24px;
         border-radius: 4px;
         font-weight: 600;
@@ -139,14 +305,14 @@
     }
 
     .edit-btn:hover {
-        background-color: grey;
+        background-color: var(--background-color);
     }
 
     .stats {
         display: flex;
         gap: 40px;
         margin-bottom: 20px;
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
@@ -157,13 +323,12 @@
     .bio {
         font-size: 16px;
         line-height: 1.5;
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
     .bio a {
-        /* will change this with user input stuff */ 
-        color: blue;
+        color: var(--button-color);
         text-decoration: none;
         transition: color 0.3s ease;
     }
@@ -171,7 +336,7 @@
     .content-tabs {
         display: flex;
         justify-content: center;
-        border-top: 1px solid rgb(47, 47, 47);
+        border-top: 1px solid var(--border-color);
         margin-top: 40px;
         transition: border-color 0.3s ease;
     }
@@ -181,15 +346,15 @@
         text-transform: uppercase;
         font-size: 12px;
         font-weight: 600;
-        color: rgb(47, 47, 47);
+        color: var(--secondary-text);
         cursor: pointer;
         letter-spacing: 1px;
         transition: color 0.3s ease;
     }
 
     .tab.active {
-        color: rgb(158, 158, 158);
-        border-top: 1px solid rgb(47, 47, 47);
+        color: var(--text-color);
+        border-top: 1px solid var(--text-color);
         margin-top: -1px;
     }
 
@@ -202,8 +367,219 @@
 
     .grid-item {
         aspect-ratio: 1;
-        background-color: rgb(200, 200, 200);
+        background-color: var(--grid-background);
         border-radius: 4px;
         transition: background-color 0.3s ease;
+    }
+
+    /* edit panel stuff */ 
+    .edit-panel {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 320px;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .panel-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease-in-out;
+        background: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* for the menu inside original menu */ 
+    .panel-content.submenu {
+        transform: translateX(100%);
+    }
+
+    /* for color menu when it opens */ 
+    .panel-content.submenu.open {
+        transform: translateX(0);
+    }
+
+    .scroll-container {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    .options-list {
+        padding: 8px 0;
+    }
+
+    .option-item {
+        padding: 16px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .option-item:hover {
+        background-color: var(--background-color);
+    }
+
+    .option-name {
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .option-description {
+        font-size: 14px;
+        color: var(--secondary-text);
+    }
+
+    .back-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-color);
+        font-size: 24px;
+        padding: 0 8px;
+    }
+
+    .edit-panel.open {
+        right: 0;
+    }
+
+    .edit-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--secondary-text);
+    }
+
+    .close-btn:hover {
+        color: var(--text-color);
+    }
+
+    /* default theme */
+    :root {
+        --background-color: #fafafa;
+        --header-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+        --text-color: #262626;
+        --secondary-text: #8e8e8e;
+        --button-color: #0095f6;
+        --button-hover: #0081d6;
+        --border-color: #dbdbdb;
+        --grid-background: #efefef;
+        --profile-pic-bg: #efefef;
+    }
+
+    /* these are the theme classes */
+    .theme-citrus {
+        --background-color: #fff0f0;
+        --header-gradient: linear-gradient(to right, #ff9a9e, #fad0c4);
+        --text-color: #d4145a;
+        --secondary-text: #ff6b6b;
+        --button-color: #ff4b7d;
+        --button-hover: #ff1a5e;
+        --border-color: #ffc2c2;
+        --grid-background: #ffe5e5;
+        --profile-pic-bg: #ffccd5;
+    }
+
+    .theme-professional {
+        --background-color: #f0f7ff;
+        --header-gradient: linear-gradient(to right, #2193b0, #6dd5ed);
+        --text-color: #1a365d;
+        --secondary-text: #2c5282;
+        --button-color: #2b6cb0;
+        --button-hover: #2c5282;
+        --border-color: #bee3f8;
+        --grid-background: #ebf8ff;
+        --profile-pic-bg: #bee3f8;
+    }
+
+    .theme-space {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #231942, #5e548e);
+        --text-color: #bbb0d8;
+        --secondary-text: #5e548e;
+        --button-color: #9f86c0;
+        --button-hover: #5e548e;
+        --border-color: #e0b1cb;
+        --grid-background: #f8f9fa;
+        --profile-pic-bg: #be95c4;
+    }
+
+    .frame-preview.square {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        margin: 10px auto;
+    }
+
+    /* previews for the color schemes */
+    .preset-preview.minimal {
+        background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
+    }
+
+    .preset-preview.citrus {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    .preset-preview.professional {
+        background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
+    }
+
+    .preset-preview.space {
+        background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
+    }
+
+    .color-presets {
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .color-preset {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .color-preset:hover {
+        transform: scale(1.02);
+    }
+
+    .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+
+    .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
     }
     </style>

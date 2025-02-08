@@ -95,7 +95,7 @@
                     <div class="option-name">Grid Sizing</div>
                     <div class="option-description">Update the size and display of your Instagram grid</div>
                 </div>
-                <div class="option-item">
+                <div class="option-item" onclick="openSubmenu('communityMenu')">
                     <div class="option-name">Communities</div>
                     <div class="option-description">Create or manage a Community</div>
                 </div>
@@ -173,6 +173,48 @@
                         <button class="grid-btn active" onclick="changeGrid(3)">3 x 3</button>
                         <button class="grid-btn" onclick="changeGrid(4)">4 x 4</button>
                         <button class="grid-btn" onclick="changeGrid(5)">5 x 5</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- communities for menu option -->
+        <div class="panel-content submenu" id="communityMenu">
+            <div class="edit-panel-header">
+                <button class="back-btn" onclick="closeSubmenu('communityMenu')">←</button>
+                <h2>Communities</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+       
+            <div class="scroll-container">
+                <!-- community section -->
+                <div class="section-header">
+                    <h3>Create New Community</h3>
+                </div>
+                <div class="community-form">
+                    <input type="text" id="communityName" placeholder="Your community name" class="community-input">
+                    <button onclick="createCommunity()" class="create-community-btn">Create</button>
+                </div>
+       
+                <!-- active in communities section -->
+                <div class="section-header">
+                    <h3>Your Communities</h3>
+                </div>
+                <div class="communities-list" id="communitiesList">
+                    <!-- ur communities - these are gonna be filled dynamically -->
+                    <div class="community-item">
+                        <div class="community-info">
+                            <span class="community-name">Big Chungus Lovers</span>
+                            <span class="member-count">1.2K members</span>
+                        </div>
+                        <button class="manage-community-btn">Manage</button>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-info">
+                            <span class="community-name">UIC Flames</span>
+                            <span class="member-count">856 members</span>
+                        </div>
+                        <button class="manage-community-btn">Manage</button>
                     </div>
                 </div>
             </div>
@@ -345,4 +387,31 @@
             }
         }
         // problems
+
+        // creates a community
+        function createCommunity() {
+           const communityNameInput = document.getElementById('communityName');
+           const communityName = communityNameInput.value.trim();
+          
+           if (communityName) {
+               // new community item
+               const communitiesList = document.getElementById('communitiesList');
+               const newCommunity = document.createElement('div');
+               newCommunity.className = 'community-item';
+               // inner html to let me put this info in here
+               newCommunity.innerHTML = `
+                   <div class="community-info">
+                       <span class="community-name">${communityName}</span>
+                       <span class="member-count">1 member</span>
+                   </div>
+                   <button class="manage-community-btn">Manage</button>
+               `;
+              
+               // add to the top
+               communitiesList.insertBefore(newCommunity, communitiesList.firstChild);
+              
+               // empty it
+               communityNameInput.value = '';
+           }
+       }
     </script>

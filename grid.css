@@ -30,3 +30,17 @@
     max-width: 500px;
     border-radius: 8px;
 }
+
+/* specific for the grid buttons */ 
+.grid-btn {
+    margin: 16px 5px; /* margin from the top and between buttons */  
+    padding: 10px 15px;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}

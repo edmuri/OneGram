@@ -65,6 +65,27 @@
         color: var(--secondary-text);
     }
 
+    /* this is the save setting button */
+    .save-settings-btn {
+        margin: 16px 50px 5px 5px;
+        padding: 10px 15px;
+        background-color: var(--button-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+    
+    /* save settings button */ 
+    .save-settings-btn:hover {
+        background-color: var(--button-hover);
+    }
+
+    /* close and back buttons here */ 
+
     .back-btn {
         background: none;
         border: none;

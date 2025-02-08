@@ -23,3 +23,8 @@
 ## Instructions for Running
 
 ## Project Team
+- Julia Bowman (Team Lead, Front-end, Conceptualization)
+- Basil Tiongson (Back-end, Server Management/DevOps)
+- Eduardo Murillo (Git Lead, Back-end, Server Management/DevOps)
+- Jason Carmona (Project Management, Creative Design, QA)
+- Carol Aguilar Torres (Creative Design, Communication, Documentation & Research)

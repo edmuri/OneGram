@@ -83,11 +83,11 @@
         --profile-pic-bg: #798b7c;
     }
     .theme-cityofstars {
-        --background-color: #141155;
-        --header-gradient: linear-gradient(to right, #F5CB26, #dcae21);
-        --text-color: #a582ad;
-        --secondary-text: #a582ad;
-        --button-color: #704186;
+        --background-color: #292758;
+        --header-gradient: linear-gradient(to right, #f3d663, #d1a92f);
+        --text-color: #1a0d5c;
+        --secondary-text: #8d6696;
+        --button-color: #533b86;
         --button-hover: #F5CB26;
         --border-color: #F8F7EF;
         --grid-background: #140d30;

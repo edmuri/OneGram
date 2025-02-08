@@ -11,7 +11,9 @@
     <!-- this basically uses the same layout as the profile page but i changed the header to be able to hold an image-->
     <div class="container">
         <div class="community-header">
-            <div class="header-image"></div>
+            <div class="header-image" onclick="document.getElementById('headerImageInput').click()">
+                <input type="file" id="headerImageInput" accept="image/*" style="display: none">
+            </div>
             <div class="community-info">
                 <div class="community-details"> <!-- i didnt do any styling for this - might add later but works fine without -->
                     <h1 class="community-name">Chicago GreekTown Community</h1>
@@ -48,6 +50,31 @@
     </div> <!-- closes the container that holds everything just like the profile page -->
 </body>
 
+<script>
+    // handle header image upload with same logic as profile
+    document.getElementById('headerImageInput').onchange = function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const headerImage = document.querySelector('.header-image');
+                headerImage.style.cssText = `
+                    background: url(${e.target.result}) center/cover;
+                `;
+                localStorage.setItem('headerImage', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // load saved header image
+    const savedHeader = localStorage.getItem('headerImage');
+    if (savedHeader) {
+        document.querySelector('.header-image').style.cssText = `
+            background: url(${savedHeader}) center/cover;
+        `;
+    }
+</script>
 <style>
     /* includes photo and header - including buttons BUT NOT THE REELS AND STUFF */ 
     .community-header {
@@ -173,6 +200,37 @@
         background-color: var(--border-color);
         border-radius: 4px;
         overflow: hidden;
+    }
+
+    .header-image {
+    cursor: pointer;
+    position: relative;
+    }
+
+    .header-image::after {
+        content: 'Change Header Image';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .header-image:hover::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .header-image:hover::after {
+        opacity: 1;
     }
 </style>
 </html>

@@ -60,6 +60,7 @@
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
             <div class="options-list">
+                <!-- user clicks and menu opens inside the existing edit menu -->
                 <div class="option-item" onclick="openSubmenu('presetsMenu')">
                     <div class="option-name">Profile Themes</div>
                     <div class="option-description">Change the visual display of your profile</div>
@@ -72,6 +73,17 @@
                     <div class="option-name">Communities</div>
                     <div class="option-description">Create or manage a Community</div>
                 </div>
+            </div>
+        </div>
+
+        <!-- submenu that opens inside of menu -->
+        <!-- will add colors -->
+        <div class="panel-content submenu" id="presetsMenu">
+            <div class="edit-panel-header">
+                <!-- user clicks and menu is closed -->
+                <button class="back-btn" onclick="closeSubmenu('presetsMenu')">←</button>
+                <h2>Color Presets</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
         </div>
 
@@ -100,6 +112,18 @@
             if (!panel.classList.contains('open')) {
                 closeSubmenu('presetsMenu');
             }
+        }
+
+        /* function to get css to change so menu is shown */
+        function openSubmenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            submenu.classList.add('open');
+        }
+
+        /* css to change to close menu */
+        function closeSubmenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            submenu.classList.remove('open');
         }
 
         // going to put options here
@@ -287,6 +311,16 @@
         background: white;
         display: flex;
         flex-direction: column;
+    }
+
+    /* for the menu inside original menu */ 
+    .panel-content.submenu {
+        transform: translateX(100%);
+    }
+
+    /* for color menu when it opens */ 
+    .panel-content.submenu.open {
+        transform: translateX(0);
     }
 
     .scroll-container {

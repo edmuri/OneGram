@@ -1,0 +1,99 @@
+    /* edit panel stuff */ 
+    .edit-panel {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 320px;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .panel-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease-in-out;
+        background: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* for the menu inside original menu */ 
+    .panel-content.submenu {
+        transform: translateX(100%);
+    }
+
+    /* for color menu when it opens */ 
+    .panel-content.submenu.open {
+        transform: translateX(0);
+    }
+
+    .scroll-container {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    .options-list {
+        padding: 8px 0;
+    }
+
+    .option-item {
+        padding: 16px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .option-item:hover {
+        background-color: var(--background-color);
+    }
+
+    .option-name {
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .option-description {
+        font-size: 14px;
+        color: var(--secondary-text);
+    }
+
+    .back-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-color);
+        font-size: 24px;
+        padding: 0 8px;
+    }
+
+    .edit-panel.open {
+        right: 0;
+    }
+
+    .edit-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--secondary-text);
+    }
+
+    .close-btn:hover {
+        color: var(--text-color);
+    }

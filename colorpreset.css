@@ -60,6 +60,18 @@
         --profile-pic-bg: #ffe5f8;
     }
 
+    .theme-citybreeze {
+        --background-color: #BAD5E7;
+        --header-gradient: linear-gradient(to right, #fff4fc, #ffe5f8);
+        --text-color: #233949;
+        --secondary-text: #49434C;
+        --button-color: #2A6EB3;
+        --button-hover: #cca3cf;
+        --border-color: #dbc4d4;
+        --grid-background: #F8F8F9;
+        --profile-pic-bg: #ffe5f8;
+    }
+
     /* previews for the color schemes */
     .preset-preview.minimal {
         background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
@@ -80,7 +92,10 @@
     .preset-preview.cherryblossom {
         background: linear-gradient(45deg, #ffd8f3 0%, #fff1fb 100%);
     }
-    
+    .preset-preview.citybreeze {
+        background: linear-gradient(45deg, #233949 0%, #2A6EB3 100%);
+    }
+
     .color-presets {
         padding: 16px;
         display: grid;

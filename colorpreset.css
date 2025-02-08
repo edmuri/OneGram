@@ -1,0 +1,112 @@
+    /* default theme */
+    :root {
+        --background-color: #fafafa;
+        --header-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+        --text-color: #262626;
+        --secondary-text: #8e8e8e;
+        --button-color: #0095f6;
+        --button-hover: #0081d6;
+        --border-color: #dbdbdb;
+        --grid-background: #efefef;
+        --profile-pic-bg: #efefef;
+    }
+
+    /* these are the theme classes */
+    .theme-citrus {
+        --background-color: #fff0f0;
+        --header-gradient: linear-gradient(to right, #ff9a9e, #fad0c4);
+        --text-color: #d4145a;
+        --secondary-text: #ff6b6b;
+        --button-color: #ff4b7d;
+        --button-hover: #ff1a5e;
+        --border-color: #ffc2c2;
+        --grid-background: #ffe5e5;
+        --profile-pic-bg: #ffccd5;
+    }
+
+    .theme-professional {
+        --background-color: #f0f7ff;
+        --header-gradient: linear-gradient(to right, #2193b0, #6dd5ed);
+        --text-color: #1a365d;
+        --secondary-text: #2c5282;
+        --button-color: #2b6cb0;
+        --button-hover: #2c5282;
+        --border-color: #bee3f8;
+        --grid-background: #ebf8ff;
+        --profile-pic-bg: #bee3f8;
+    }
+
+    .theme-space {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #231942, #5e548e);
+        --text-color: #bbb0d8;
+        --secondary-text: #5e548e;
+        --button-color: #9f86c0;
+        --button-hover: #5e548e;
+        --border-color: #e0b1cb;
+        --grid-background: #f8f9fa;
+        --profile-pic-bg: #be95c4;
+    }
+
+    /* previews for the color schemes */
+    .preset-preview.minimal {
+        background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
+    }
+
+    .preset-preview.citrus {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    .preset-preview.professional {
+        background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
+    }
+
+    .preset-preview.space {
+        background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
+    }
+
+    .color-presets {
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .color-preset {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .color-preset:hover {
+        transform: scale(1.02);
+    }
+
+    .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+
+    .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
+    }
+
+    /* headings for text in theme presets */ 
+    .section-header {
+        padding: 20px 16px 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 16px;
+    }
+
+    /* end of color preset stuff */ 

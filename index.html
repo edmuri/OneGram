@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Profile</title>
+    <link rel="stylesheet" href="profilepage.css"> <!-- general page styling-->
+    <link rel="stylesheet" href="editpanel.css"> <!-- the edit panel itself layout -->
+    <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
+    <link rel="stylesheet" href="profileframe.css"> <!-- frames for profile photo shapes -->
 </head>
 <body>
     <div class="container">
@@ -86,7 +90,7 @@
                 <h2>Color Presets</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
-            
+
             <!-- container to allow scroll so we can add way more presets later -->
             <div class="scroll-container">
                 <div class="color-presets">
@@ -110,8 +114,25 @@
                         <div class="preset-title">Space</div>
                         <div class="preset-desc">Shooting Star</div>
                     </div>
+                </div> <!-- closes color presets -->
+
+                <!-- profile photo frame options -->
+                <div class="section-header">
+                    <h3>Profile Photo Frames</h3>
                 </div>
-            </div>
+                <div class="frame-presets">
+                    <div class="frame-option" onclick="setProfileFrame('circle')" data-frame="circle">
+                        <div class="frame-preview circle"></div>
+                        <div class="preset-title">Circle</div>
+                        <div class="preset-desc">Classic round frame</div>
+                    </div>
+                    <div class="frame-option" onclick="setProfileFrame('square')" data-frame="square">
+                        <div class="frame-preview square"></div>
+                        <div class="preset-title">Square</div>
+                        <div class="preset-desc">Rounded square frame</div>
+                    </div>
+                </div> <!-- closes frame preset -->
+            </div> <!-- closes scroll container -->
         </div>
 
         <!--submenu to control grid layout-->
@@ -201,6 +222,33 @@
             }
         }
 
+        /* this function changes the frame shape */ 
+        function setProfileFrame(frameType) {
+            // remove all existing frame classes 
+            const profilePic = document.querySelector('.profile-pic');
+            // frame option types 
+            const allFrameTypes = ['circle', 'square'];
+            
+            allFrameTypes.forEach(type => {
+                profilePic.classList.remove(`frame-${type}`);
+            });
+            
+            // add new frame class
+            profilePic.classList.add(`frame-${frameType}`);
+            
+            // update the selection
+            const frames = document.querySelectorAll('.frame-option');
+            frames.forEach(frame => {
+                frame.style.border = '1px solid var(--border-color)';
+            });
+            
+            /* selection border */ 
+            const selectedFrame = document.querySelector(`.frame-option[data-frame="${frameType}"]`);
+            if (selectedFrame) {
+                selectedFrame.style.border = '2px solid var(--button-color)';
+            }
+        }
+
         //function redraw grid layout
         function changeGrid(value) {
             const gridSize = value;
@@ -219,367 +267,5 @@
             }
 
         }
+        // problems
     </script>
-
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    body {
-        background-color: var(--background-color);
-        transition: background-color 0.3s ease;
-    }
-
-    .container {
-        max-width: 935px;
-        margin: 0 auto;
-        padding: 30px 20px;
-    }
-
-    .profile-header {
-        display: flex;
-        gap: 80px;
-        margin-bottom: 44px;
-        background: var(--header-gradient);
-        padding: 40px;
-        border-radius: 12px;
-        transition: background 0.3s ease;
-    }
-
-    .profile-pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background-color: var(--profile-pic-bg);
-        flex-shrink: 0;
-        transition: background-color 0.3s ease;
-    }
-
-    .profile-info {
-        flex-grow: 1;
-    }
-
-    .profile-actions {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        margin: 20px 0;
-    }
-
-    .username {
-        font-size: 28px;
-        font-weight: 300;
-        margin-bottom: 20px;
-        color: var(--text-color);
-        transition: color 0.3s ease;
-    }
-
-    .follow-btn {
-        background-color: var(--button-color);
-        color: white;
-        border: none;
-        padding: 5px 24px;
-        border-radius: 4px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .follow-btn:hover {
-        background-color: var(--button-hover);
-    }
-
-    .edit-btn {
-        background-color: transparent;
-        border: 1px solid var(--border-color);
-        color: var(--text-color);
-        padding: 5px 24px;
-        border-radius: 4px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .edit-btn:hover {
-        background-color: var(--background-color);
-    }
-
-    .stats {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 20px;
-        color: var(--text-color);
-        transition: color 0.3s ease;
-    }
-
-    .stat-number {
-        font-weight: 600;
-    }
-
-    .bio {
-        font-size: 16px;
-        line-height: 1.5;
-        color: var(--text-color);
-        transition: color 0.3s ease;
-    }
-
-    .bio a {
-        color: var(--button-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .content-tabs {
-        display: flex;
-        justify-content: center;
-        border-top: 1px solid var(--border-color);
-        margin-top: 40px;
-        transition: border-color 0.3s ease;
-    }
-
-    .tab {
-        padding: 20px;
-        text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--secondary-text);
-        cursor: pointer;
-        letter-spacing: 1px;
-        transition: color 0.3s ease;
-    }
-
-    .tab.active {
-        color: var(--text-color);
-        border-top: 1px solid var(--text-color);
-        margin-top: -1px;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 28px;
-        margin-top: 20px;
-    }
-
-    .grid-item {
-        aspect-ratio: 1;
-        background-color: var(--grid-background);
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-    }
-
-    /* edit panel stuff */ 
-    .edit-panel {
-        position: fixed;
-        top: 0;
-        right: -320px;
-        width: 320px;
-        height: 100%;
-        background-color: white;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease-in-out;
-        z-index: 1000;
-        overflow: hidden;
-    }
-
-    .panel-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.3s ease-in-out;
-        background: white;
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* for the menu inside original menu */ 
-    .panel-content.submenu {
-        transform: translateX(100%);
-    }
-
-    /* for color menu when it opens */ 
-    .panel-content.submenu.open {
-        transform: translateX(0);
-    }
-
-    .scroll-container {
-        flex: 1;
-        overflow-y: auto;
-        padding-bottom: 20px;
-    }
-
-    .options-list {
-        padding: 8px 0;
-    }
-
-    .option-item {
-        padding: 16px 20px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-
-    .option-item:hover {
-        background-color: var(--background-color);
-    }
-
-    .option-name {
-        font-size: 16px;
-        color: var(--text-color);
-        margin-bottom: 4px;
-    }
-
-    .option-description {
-        font-size: 14px;
-        color: var(--secondary-text);
-    }
-
-    .back-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--text-color);
-        font-size: 24px;
-        padding: 0 8px;
-    }
-
-    .edit-panel.open {
-        right: 0;
-    }
-
-    .edit-panel-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .close-btn {
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: var(--secondary-text);
-    }
-
-    .close-btn:hover {
-        color: var(--text-color);
-    }
-
-    /* default theme */
-    :root {
-        --background-color: #fafafa;
-        --header-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
-        --text-color: #262626;
-        --secondary-text: #8e8e8e;
-        --button-color: #0095f6;
-        --button-hover: #0081d6;
-        --border-color: #dbdbdb;
-        --grid-background: #efefef;
-        --profile-pic-bg: #efefef;
-    }
-
-    /* these are the theme classes */
-    .theme-citrus {
-        --background-color: #fff0f0;
-        --header-gradient: linear-gradient(to right, #ff9a9e, #fad0c4);
-        --text-color: #d4145a;
-        --secondary-text: #ff6b6b;
-        --button-color: #ff4b7d;
-        --button-hover: #ff1a5e;
-        --border-color: #ffc2c2;
-        --grid-background: #ffe5e5;
-        --profile-pic-bg: #ffccd5;
-    }
-
-    .theme-professional {
-        --background-color: #f0f7ff;
-        --header-gradient: linear-gradient(to right, #2193b0, #6dd5ed);
-        --text-color: #1a365d;
-        --secondary-text: #2c5282;
-        --button-color: #2b6cb0;
-        --button-hover: #2c5282;
-        --border-color: #bee3f8;
-        --grid-background: #ebf8ff;
-        --profile-pic-bg: #bee3f8;
-    }
-
-    .theme-space {
-        --background-color: #f8f9fa;
-        --header-gradient: linear-gradient(to right, #231942, #5e548e);
-        --text-color: #bbb0d8;
-        --secondary-text: #5e548e;
-        --button-color: #9f86c0;
-        --button-hover: #5e548e;
-        --border-color: #e0b1cb;
-        --grid-background: #f8f9fa;
-        --profile-pic-bg: #be95c4;
-    }
-
-    .frame-preview.square {
-        width: 80px;
-        height: 80px;
-        border-radius: 8px;
-        margin: 10px auto;
-    }
-
-    /* previews for the color schemes */
-    .preset-preview.minimal {
-        background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
-    }
-
-    .preset-preview.citrus {
-        background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
-    }
-
-    .preset-preview.professional {
-        background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
-    }
-
-    .preset-preview.space {
-        background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
-    }
-
-    .color-presets {
-        padding: 16px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-
-    .color-preset {
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 16px;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
-
-    .color-preset:hover {
-        transform: scale(1.02);
-    }
-
-    .preset-preview {
-        height: 100px;
-        border-radius: 4px;
-        margin-bottom: 12px;
-    }
-
-    .preset-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--text-color);
-        margin-bottom: 4px;
-    }
-
-    .preset-desc {
-        font-size: 12px;
-        color: var(--secondary-text);
-    }
-    </style>

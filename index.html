@@ -86,6 +86,32 @@
                 <h2>Color Presets</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
+            
+            <!-- container to allow scroll so we can add way more presets later -->
+            <div class="scroll-container">
+                <div class="color-presets">
+                    <div class="color-preset" onclick="setTheme('minimal')" data-theme="minimal">
+                        <div class="preset-preview minimal"></div>
+                        <div class="preset-title">Minimal</div>
+                        <div class="preset-desc">Clean and Default</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('citrus')">
+                        <div class="preset-preview citrus"></div>
+                        <div class="preset-title">Citrus</div>
+                        <div class="preset-desc">Vibrant and Energetic</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('professional')">
+                        <div class="preset-preview professional"></div>
+                        <div class="preset-title">Professional</div>
+                        <div class="preset-desc">Clear and Clean</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('space')">
+                        <div class="preset-preview space"></div>
+                        <div class="preset-title">Space</div>
+                        <div class="preset-desc">Shooting Star</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--submenu to control grid layout-->
@@ -139,7 +165,28 @@
             submenu.classList.remove('open');
         }
 
-        // going to put options here
+        /* js to set the preset themes - this changes the colors for the elements */ 
+        function setTheme(theme) {
+            // take off all existing theme classes
+            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space');
+            
+            // add a new theme class if it's not minimal (bc minimal is default)
+            if (theme !== 'minimal') {
+                document.body.classList.add('theme-' + theme);
+            }
+            
+            // this shows visually that a selection was made
+            const presets = document.querySelectorAll('.color-preset');
+            presets.forEach(preset => {
+                preset.style.border = '1px solid var(--border-color)';
+            });
+            
+            /* makes border HARDER */ 
+            const selectedPreset = document.querySelector(`.color-preset[data-theme="${theme}"]`);
+            if (selectedPreset) {
+                selectedPreset.style.border = '2px solid var(--button-color)';
+            }
+        }
     </script>
 
     <style>
@@ -151,8 +198,7 @@
     }
 
     body {
-        /* for now - were gonna have this update with user settings */ 
-        background-color: white;
+        background-color: var(--background-color);
         transition: background-color 0.3s ease;
     }
 
@@ -166,8 +212,7 @@
         display: flex;
         gap: 80px;
         margin-bottom: 44px;
-        /* this is gonna change with user settings */ 
-        background: white;
+        background: var(--header-gradient);
         padding: 40px;
         border-radius: 12px;
         transition: background 0.3s ease;
@@ -177,8 +222,7 @@
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        /* will change this to fit user */ 
-        background-color: lightgrey;
+        background-color: var(--profile-pic-bg);
         flex-shrink: 0;
         transition: background-color 0.3s ease;
     }
@@ -198,14 +242,12 @@
         font-size: 28px;
         font-weight: 300;
         margin-bottom: 20px;
-        /* should update with color choices */ 
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
     .follow-btn {
-        /* change with user choices */ 
-        background-color: rgb(77, 77, 131);
+        background-color: var(--button-color);
         color: white;
         border: none;
         padding: 5px 24px;
@@ -216,14 +258,13 @@
     }
 
     .follow-btn:hover {
-        /* change with user stuff eventually */ 
-        background-color: lightgrey;
+        background-color: var(--button-hover);
     }
 
     .edit-btn {
         background-color: transparent;
-        border: 1px solid grey;
-        color: black;
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
         padding: 5px 24px;
         border-radius: 4px;
         font-weight: 600;
@@ -232,14 +273,14 @@
     }
 
     .edit-btn:hover {
-        background-color: grey;
+        background-color: var(--background-color);
     }
 
     .stats {
         display: flex;
         gap: 40px;
         margin-bottom: 20px;
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
@@ -250,13 +291,12 @@
     .bio {
         font-size: 16px;
         line-height: 1.5;
-        color: rgb(47, 47, 47);
+        color: var(--text-color);
         transition: color 0.3s ease;
     }
 
     .bio a {
-        /* will change this with user input stuff */ 
-        color: blue;
+        color: var(--button-color);
         text-decoration: none;
         transition: color 0.3s ease;
     }
@@ -264,7 +304,7 @@
     .content-tabs {
         display: flex;
         justify-content: center;
-        border-top: 1px solid rgb(47, 47, 47);
+        border-top: 1px solid var(--border-color);
         margin-top: 40px;
         transition: border-color 0.3s ease;
     }
@@ -274,15 +314,15 @@
         text-transform: uppercase;
         font-size: 12px;
         font-weight: 600;
-        color: rgb(47, 47, 47);
+        color: var(--secondary-text);
         cursor: pointer;
         letter-spacing: 1px;
         transition: color 0.3s ease;
     }
 
     .tab.active {
-        color: rgb(158, 158, 158);
-        border-top: 1px solid rgb(47, 47, 47);
+        color: var(--text-color);
+        border-top: 1px solid var(--text-color);
         margin-top: -1px;
     }
 
@@ -295,7 +335,7 @@
 
     .grid-item {
         aspect-ratio: 1;
-        background-color: rgb(200, 200, 200);
+        background-color: var(--grid-background);
         border-radius: 4px;
         transition: background-color 0.3s ease;
     }
@@ -353,28 +393,25 @@
     }
 
     .option-item:hover {
-        background-color: green;
+        background-color: var(--background-color);
     }
 
     .option-name {
         font-size: 16px;
-        /* placeholder color for when we add styles */ 
-        color: yellow;
+        color: var(--text-color);
         margin-bottom: 4px;
     }
 
     .option-description {
         font-size: 14px;
-        /* placeholder color for when we add styles */ 
-        color: red;
+        color: var(--secondary-text);
     }
 
     .back-btn {
         background: none;
         border: none;
         cursor: pointer;
-        /* placeholder color for when we add styles */ 
-        color: blue;
+        color: var(--text-color);
         font-size: 24px;
         padding: 0 8px;
     }
@@ -388,7 +425,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        border-bottom: 1px solid grey;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .close-btn {
@@ -396,10 +433,121 @@
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: darkgray;
+        color: var(--secondary-text);
     }
 
     .close-btn:hover {
-        color: lightgray;
+        color: var(--text-color);
+    }
+
+    /* default theme */
+    :root {
+        --background-color: #fafafa;
+        --header-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+        --text-color: #262626;
+        --secondary-text: #8e8e8e;
+        --button-color: #0095f6;
+        --button-hover: #0081d6;
+        --border-color: #dbdbdb;
+        --grid-background: #efefef;
+        --profile-pic-bg: #efefef;
+    }
+
+    /* these are the theme classes */
+    .theme-citrus {
+        --background-color: #fff0f0;
+        --header-gradient: linear-gradient(to right, #ff9a9e, #fad0c4);
+        --text-color: #d4145a;
+        --secondary-text: #ff6b6b;
+        --button-color: #ff4b7d;
+        --button-hover: #ff1a5e;
+        --border-color: #ffc2c2;
+        --grid-background: #ffe5e5;
+        --profile-pic-bg: #ffccd5;
+    }
+
+    .theme-professional {
+        --background-color: #f0f7ff;
+        --header-gradient: linear-gradient(to right, #2193b0, #6dd5ed);
+        --text-color: #1a365d;
+        --secondary-text: #2c5282;
+        --button-color: #2b6cb0;
+        --button-hover: #2c5282;
+        --border-color: #bee3f8;
+        --grid-background: #ebf8ff;
+        --profile-pic-bg: #bee3f8;
+    }
+
+    .theme-space {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #231942, #5e548e);
+        --text-color: #bbb0d8;
+        --secondary-text: #5e548e;
+        --button-color: #9f86c0;
+        --button-hover: #5e548e;
+        --border-color: #e0b1cb;
+        --grid-background: #f8f9fa;
+        --profile-pic-bg: #be95c4;
+    }
+
+    .frame-preview.square {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        margin: 10px auto;
+    }
+
+    /* previews for the color schemes */
+    .preset-preview.minimal {
+        background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
+    }
+
+    .preset-preview.citrus {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    .preset-preview.professional {
+        background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
+    }
+
+    .preset-preview.space {
+        background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
+    }
+
+    .color-presets {
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .color-preset {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .color-preset:hover {
+        transform: scale(1.02);
+    }
+
+    .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+
+    .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
     }
     </style>

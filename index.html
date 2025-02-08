@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="editpanel.css"> <!-- the edit panel itself layout -->
     <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
     <link rel="stylesheet" href="profileframe.css"> <!-- frames for profile photo shapes -->
+    <link rel="stylesheet" href="grid.css">
 </head>
 <body>
     <div class="container">
@@ -43,14 +44,34 @@
 
         <!--button to add post to grid/ must implement functionality-->
         <div class="grid-controls">
-            <button class="add-post-btn" onclick="addPost()">
-                <span>+ Add New Post</span>
+            <button class="add-post-btn" onclick="openAddPostModal()">
+                <span>+</span> Add New Post
             </button>
         </div>
 
         <!-- basic grid for now - want to add different sizing and options -->
         <div class="grid" id="postsGrid">
 
+        </div>
+
+        <!-- new popup to add posts with title instead of only box, will update to include picture upload -->
+        <div class="modal" id="addPostModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Create New Post</h2>
+                    <span class="close-modal" onclick="closeAddPostModal()">×</span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="postTitle">Title</label>
+                        <input type="text" id="postTitle" placeholder="Enter post title">
+                    </div>
+                    <div class="modal-actions">
+                        <button class="cancel-btn" onclick="closeAddPostModal()">Cancel</button>
+                        <button class="submit-btn" onclick="createPost()">Create Post</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -266,6 +287,62 @@
                 grid.style.gap = '15px';
             }
 
+        }
+
+        //gets the posts array from local storage to display and alter
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+        //function to show popup for adding post
+        function openAddPostModal() {
+            document.getElementById('addPostModal').style.display = 'block';
+        }
+
+        //function to close popup
+        function closeAddPostModal() {
+            document.getElementById('addPostModal').style.display = 'none';
+            document.getElementById('postTitle').value = '';
+        }
+
+        function createPost() {
+            const title = document.getElementById('postTitle').value.trim();
+
+            const newPost = {
+                title,
+            };
+
+            posts.unshift(newPost); // add new post to first index of array
+            localStorage.setItem('posts', JSON.stringify(posts));  //stores this array in local storage
+            renderPosts();  //updates the webpage
+            closeAddPostModal(); //closes out popup
+            
+            // update post count
+            const postCountElement = document.querySelector('.stat-number');
+            const currentCount = parseInt(postCountElement.textContent);
+            postCountElement.textContent = currentCount + 1;
+        }
+
+        //updates the grid html element printing out each element of posts from local storage
+        function renderPosts() {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = '';
+
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'grid-item';
+                postElement.innerHTML = `<img src="/api/placeholder/400/400" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                grid.appendChild(postElement);
+            });
+        }
+
+        //initialize posts on page load
+        document.addEventListener('DOMContentLoaded', renderPosts);
+
+        //close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('addPostModal');
+            if (event.target === modal) {
+                closeAddPostModal();
+            }
         }
         // problems
     </script>

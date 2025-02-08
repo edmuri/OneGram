@@ -162,10 +162,10 @@
                         <div class="preset-title"> Monotone </div>
                         <div class="preset-desc"> Who Needs Color</div>
                     </div>
-                    <div class="color-preset" onclick="setTheme('purplerain')">
-                        <div class="preset-preview purplerain"></div>
-                        <div class="preset-title"> Purple Rain </div>
-                        <div class="preset-desc"> Prince And The Revolution </div>
+                    <div class="color-preset" onclick="setTheme('pinkdream')">
+                        <div class="preset-preview pinkdream"></div>
+                        <div class="preset-title"> Pink Dream </div>
+                        <div class="preset-desc"> Rose Clouds</div>
                     </div>
                 </div> <!-- closes color presets -->
 
@@ -404,7 +404,7 @@
         /* js to set the preset themes - this changes the colors for the elements */ 
         function setTheme(theme) {
             // take off all existing theme classes
-            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone','theme-purplerain');
+            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone','theme-pinkdream');
             
             // add a new theme class if it's not minimal (bc minimal is default)
             if (theme !== 'minimal') {
@@ -582,7 +582,7 @@
     document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
     document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
     // Remove any active theme classes
-    document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone');
+    document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-pinkdream');
     }
 
     function adjustColor(color, opacity) {

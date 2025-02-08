@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="grid.css">
     <link rel="stylesheet" href="community.css"> <!-- css for the community tab -->
     <link rel="stylesheet" href="footer.css"> <!-- css for the footer static thing -->
+    <link rel="stylesheet" href="profilepic.css"> <!-- profile photo change and modal -->
 
 </head>
 <body>
     <div class="container">
         <div class="profile-header">
-            <div class="profile-pic"></div>
+            <!-- can now upload file to profile pic image -->
+            <div class="profile-pic" onclick="triggerProfilePicUpload()">
+                <input type="file" id="profilePicInput" accept="image/*" style="display: none" onchange="handleProfilePicUpload(event)">
+                <div class="upload-overlay"></div>
+            </div>
             <div class="profile-info">
                 <div class="username">username</div>
                 <div class="profile-actions">
@@ -372,7 +377,37 @@
             postCountElement.textContent = currentCount + 1;
         }
 
-        // open edit panel when clicked 'edit profile'
+        // change profile photo 
+        // click on profile pic to upload
+        document.querySelector('.profile-pic').onclick = () => document.getElementById('profilePicInput').click();
+
+        // when the current placeholder changes opens file reader to select new photo
+        document.getElementById('profilePicInput').onchange = function() {
+            //same logic and format as grid post photo upload to store image
+            //also uses cssText to center image
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const profilePic = document.querySelector('.profile-pic');
+                    profilePic.style.cssText = `
+                        background: url(${e.target.result}) center/cover;      
+                    `;
+                    localStorage.setItem('profilePicture', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        // load the saved profile picture
+        const savedPic = localStorage.getItem('profilePicture');
+        if (savedPic) {
+            document.querySelector('.profile-pic').style.cssText = `
+                background: url(${savedPic}) center/cover;
+            `;
+        }
+
+        // open edit panel when u click edit profile
         function toggleEditPanel() {
             const panel = document.getElementById('editPanel');
             panel.classList.toggle('open');
@@ -380,24 +415,25 @@
             // takes you back to the main menu when you close
             if (!panel.classList.contains('open')) {
                 closeSubmenu('presetsMenu');
-                //added closing for grid submenu as well
+                // added closing for grid submenu as well
                 closeSubmenu('gridMenu');
             }
         }
 
-        /* function to get css to change so menu is shown */
+        // function to get css to change so menu is shown
         function openSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.add('open');
         }
 
-        /* css to change to close menu */
+        // css to change to close menu 
         function closeSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.remove('open');
         }
+        // end of change profile photo 
 
-        /* js to set the preset themes - this changes the colors for the elements */ 
+        // js to set the preset themes - this changes the colors for the elements
         function setTheme(theme) {
             // take off all existing theme classes
             document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone','theme-purplerain');

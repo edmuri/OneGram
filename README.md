@@ -1,8 +1,9 @@
-# [Project Name - SparkHacks 2025]
+# [Project Name - UIC SparkHacks 2025]
 
-[Project Name] is an all encompassing social media application to unite them all! Inspired by the sleek interface of Instagram, customization of Tumblr, and organization of Facebook, [Project Name] envisions an all-in-one solution with favorite features of other popular apps.
+**[Project Name]** is an all encompassing social media application to unite them all! Inspired by the sleek interface of Instagram, customization of Tumblr, and organization of Facebook, [Project Name] envisions an all-in-one solution with favorite features of other popular apps.
 
-## The Gist
+### Purpose
+[On average, people use 6.8 social media platforms each month.](https://datareportal.com/social-media-users) With the rise of the digital age and the need for [online connection during the COVID-19 pandemic](https://www.nbcnews.com/health/health-news/here-are-stay-home-orders-across-country-n1168736), it's no surprise that social media has become an important part of most people's lives. 
 
 ### Features
 - Familiar Instagram-inspired UI with added customization & personalization

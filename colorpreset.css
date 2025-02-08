@@ -48,6 +48,18 @@
         --profile-pic-bg: #be95c4;
     }
 
+    .theme-cherryblossom {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #fff4fc, #ffe5f8);
+        --text-color: #9d93b8;
+        --secondary-text: #b8a3b9;
+        --button-color: #dbc4d4;
+        --button-hover: #cca3cf;
+        --border-color: #dbc4d4;
+        --grid-background: #ffeffe;
+        --profile-pic-bg: #ffe5f8;
+    }
+
     /* previews for the color schemes */
     .preset-preview.minimal {
         background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
@@ -65,6 +77,10 @@
         background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
     }
 
+    .preset-preview.cherryblossom {
+        background: linear-gradient(45deg, #ffd8f3 0%, #fff1fb 100%);
+    }
+    
     .color-presets {
         padding: 16px;
         display: grid;

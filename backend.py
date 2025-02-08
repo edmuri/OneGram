@@ -21,11 +21,12 @@ def root():
 
 #this function captures the request to save the data to firebase
 @app.route('/save-settings', methods=['POST'])
-def save_layout():
+def save_settings():
     data = request.json
     profile_id = data.get('userID')
     
     db.collection("settings").document(profile_id).set(data)
+    return jsonify({"message": "Settings saved successfully"})
 
 #this gets the layout from the firebase, 
 # should be called when rendering profile page
@@ -45,7 +46,7 @@ def get_settings():
 def save_theme():
     data = request.json
     profile_id = data.get('userID')
-    db.collection("themes").document(profile_id).add(data)
+    db.collection("themes").document(profile_id).set(data)
     return jsonify({"message": "Theme saved successfully"})
 
     

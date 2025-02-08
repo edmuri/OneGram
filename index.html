@@ -292,6 +292,8 @@
 
             setTheme(data['theme']);
             changeGrid(Number(data['grid']));
+            console.log(data);
+            setCommunities(data['communities']);
 
         }
         pullSettings();
@@ -310,7 +312,14 @@
                 body: JSON.stringify(settings)
             }
             );
+
         }
+
+        function setCommunities(communities){
+                    for(let i=0;i<communities.length;i++){
+                        window.communities.push(communities[i]);
+                    }
+                }
 
         async function saveNewTheme(){
             let bgColor = document.getElementById("bg-color").value;

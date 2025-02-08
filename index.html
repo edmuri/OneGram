@@ -122,7 +122,20 @@
                 <h2>Grid Layout</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
+
+            <!--added function to change grid layout and redraw grid-->
+            <div class="options-list">
+                <div class="grid-controls">
+                    <label for="grid-size">Select Grid Size:</label>
+                    <div class="grid-size-buttons">
+                        <button class="grid-btn active" onclick="changeGrid(3)">3 x 3</button>
+                        <button class="grid-btn" onclick="changeGrid(4)">4 x 4</button>
+                        <button class="grid-btn" onclick="changeGrid(5)">5 x 5</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
     <script>
         //adds new post spot to grid 
@@ -186,6 +199,25 @@
             if (selectedPreset) {
                 selectedPreset.style.border = '2px solid var(--button-color)';
             }
+        }
+
+        //function redraw grid layout
+        function changeGrid(value) {
+            const gridSize = value;
+            const grid = document.querySelector('.grid');
+            
+            // change grid layout columns based on selected grid
+            grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+            
+            // change gap size to fit new grid layout
+            if (gridSize === 3) {
+                grid.style.gap = '28px';
+            } else if (gridSize === 4) {
+                grid.style.gap = '20px';
+            } else {
+                grid.style.gap = '15px';
+            }
+
         }
     </script>
 

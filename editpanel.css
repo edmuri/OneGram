@@ -67,7 +67,7 @@
     
     /* this is the save setting button */
     .save-settings-btn {
-        margin: 16px 50px 5px 5px;
+        margin: 16px 0px 5px 20px;
         padding: 10px 15px;
         background-color: var(--button-color);
         color: white;

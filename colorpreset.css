@@ -60,6 +60,61 @@
         --profile-pic-bg: #ffe5f8;
     }
 
+    .theme-citybreeze {
+        --background-color: #adeae6;
+        --header-gradient: linear-gradient(to right, #BAD5E7, #233949);
+        --text-color: #233949;
+        --secondary-text: #49434C;
+        --button-color: #2A6EB3;
+        --button-hover: #cca3cf;
+        --border-color: #BAD5E7;
+        --grid-background: #49434C;
+        --profile-pic-bg: #2A6EB3;
+    }
+    .theme-emeraldsplash {
+        --background-color: #1C6752;
+        --header-gradient: linear-gradient(to right, #1DFF8F, #1C6752);
+        --text-color: #14303c;
+        --secondary-text: #9BCCDB;
+        --button-color: #1DFF8F;
+        --button-hover: #A99FB8;
+        --border-color: #BAD5E7;
+        --grid-background: #140d30;
+        --profile-pic-bg: #798b7c;
+    }
+    .theme-cityofstars {
+        --background-color: #201c6f;
+        --header-gradient: linear-gradient(to right, #F5CB26, #321486);
+        --text-color: #000000;
+        --secondary-text: #763f84;
+        --button-color: #070E2D;
+        --button-hover: #F5CB26;
+        --border-color: #F8F7EF;
+        --grid-background: #140d30;
+        --profile-pic-bg: #f0f0f0;
+    }
+    .theme-monotone {
+        --background-color: #7f7f7f;
+        --header-gradient: linear-gradient(to right, #ffffff, #e1e1e1);
+        --text-color: #000000;
+        --secondary-text: #000000;
+        --button-color: #9b9b9b;
+        --button-hover: #3b3b3b;
+        --border-color: #e4e4e4;
+        --grid-background: #333333;
+        --profile-pic-bg: #000000;
+    }
+    .theme-purplerain {
+        --background-color: #635761;
+        --header-gradient: linear-gradient(to right, #e2be59, #EFCC6A);
+        --text-color: #181618;
+        --secondary-text: #2C2B30;
+        --button-color: #635761;
+        --button-hover: #3b3b3b;
+        --border-color: #e4e4e4;
+        --grid-background: #333333;
+        --profile-pic-bg: #DCDDCD;
+    }
     /* previews for the color schemes */
     .preset-preview.minimal {
         background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
@@ -80,7 +135,24 @@
     .preset-preview.cherryblossom {
         background: linear-gradient(45deg, #ffd8f3 0%, #fff1fb 100%);
     }
-    
+    .preset-preview.citybreeze {
+        background: linear-gradient(45deg, #233949 0%, #2A6EB3 100%);
+    }
+    .preset-preview.emeraldsplash {
+        background: linear-gradient(45deg, #14303c 0%, #1DFF8F 100%);
+    }
+    .preset-preview.cityofstars {
+        background: linear-gradient(45deg, #F5CB26 0%, #4C2BA5 100%);
+    }
+    .preset-preview.monotone {
+        background: linear-gradient(45deg, #ffffff 0%, #000000 100%);
+    }
+    .preset-preview.purplerain {
+        background: linear-gradient(45deg, #635761 0%, #EFCC6A 100%);
+    }
+
+
+
     .color-presets {
         padding: 16px;
         display: grid;

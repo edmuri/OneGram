@@ -134,6 +134,31 @@
                         <div class="preset-title">Cherry Blossom</div>
                         <div class="preset-desc">Spring and Renewal</div>
                     </div> <!-- closes cherry blossom -->
+                    <div class="color-preset" onclick="setTheme('citybreeze')">
+                        <div class="preset-preview citybreeze"></div>
+                        <div class="preset-title">City Breeze</div>
+                        <div class="preset-desc">Stop The Noise</div>
+                    </div> <!-- closes city breeze -->
+                    <div class="color-preset" onclick="setTheme('emeraldsplash')">
+                        <div class="preset-preview emeraldsplash"></div>
+                        <div class="preset-title">Emerald Splash</div>
+                        <div class="preset-desc">Brilliant and Beautiful</div>
+                    </div> <!-- closes emerald splash -->
+                    <div class="color-preset" onclick="setTheme('cityofstars')">
+                        <div class="preset-preview cityofstars"></div>
+                        <div class="preset-title">City Of Stars </div>
+                        <div class="preset-desc"> Memories of Summer Sunday Nights</div>
+                    </div> 
+                    <div class="color-preset" onclick="setTheme('monotone')">
+                        <div class="preset-preview monotone"></div>
+                        <div class="preset-title"> Monotone </div>
+                        <div class="preset-desc"> Who Needs Color</div>
+                    </div>
+                    <div class="color-preset" onclick="setTheme('purplerain')">
+                        <div class="preset-preview purplerain"></div>
+                        <div class="preset-title"> Purple Rain </div>
+                        <div class="preset-desc"> Prince And The Revolution </div>
+                    </div>
                 </div> <!-- closes color presets -->
 
                 <div class="color-preset custom-colors">
@@ -371,7 +396,7 @@
         /* js to set the preset themes - this changes the colors for the elements */ 
         function setTheme(theme) {
             // take off all existing theme classes
-            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom');
+            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone','theme-purplerain');
             
             // add a new theme class if it's not minimal (bc minimal is default)
             if (theme !== 'minimal') {

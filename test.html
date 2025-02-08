@@ -105,7 +105,9 @@
                     <div class="option-name">Communities</div>
                     <div class="option-description">Create or manage a Community</div>
                 </div>
+                <button onclick="save_settings()">SAVE SETTINGS</button>
             </div>
+            
         </div>
 
         <!-- submenu that opens inside of menu -->
@@ -147,6 +149,23 @@
                         <div class="preset-desc">Spring and Renewal</div>
                     </div>
                 </div> <!-- closes color presets -->
+
+                <div class="color-preset custom-colors">
+                    <div class="preset-preview custom">
+                        <div class="control-group">
+                            <label for="bg-color">Background:</label>
+                            <input id="bg-color">
+                        </div>
+                        <div class="control-group">
+                            <label for="text-color">Text:</label>
+                            <input id="text-color">
+                        </div>
+                    </div>
+                    <div class="preset-title">Custom Colors</div>
+                    <div class="preset-desc">Create your own color scheme</div>
+                    <button class = 'saveButton' onclick=saveNewTheme()>Save</button>
+                </div>
+            </div>
 
                 <!-- profile photo frame options -->
                 <div class="section-header">
@@ -233,6 +252,96 @@
     </div>
 
     <script>
+        let gridNum = 3;
+        let theme = "minimal";
+
+         function get_user_id(){
+            return "user_123";
+        }
+
+        async function pullSettings(){
+            let response = await fetch(`http://127.0.0.1:5000/get-settings?userID=${get_user_id()}`,{
+                method:'GET',
+                mode:"cors",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            let data = await response.json();
+
+            setTheme(data['theme'])
+            // setGrid(data['grid'])
+
+        }
+        pullSettings();
+
+        async function save_settings(){
+            let settings = {
+                "theme":theme,
+                "grid":String(gridNum),
+                "userID":get_user_id()
+            };
+            console.log(settings);
+            let response = await fetch(`http://127.0.0.1:5000/save-settings?userID=${get_user_id()}`,{
+                method:'POST',
+                mode:'cors',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify(settings)
+            }
+            );
+        }
+
+        async function saveNewTheme(){
+            let bgColor = document.getElementById("bg-color").value;
+            let textColor = document.getElementById("text-color").value;
+            updateCustomColors(bgColor,textColor);
+
+            let newTheme = {
+                "backgroundColor": document.documentElement.style.getPropertyValue('--background-color'),
+                "headerGradient": document.documentElement.style.getPropertyValue('--header-gradient'),
+               "textColor":document.documentElement.style.getPropertyValue('--text-color'),
+                "secondaryText": document.documentElement.style.getPropertyValue('--secondary-text'),
+                "buttonColor":document.documentElement.style.getPropertyValue('--button-color'),
+                "buttonHover": document.documentElement.style.getPropertyValue('--button-hover'),
+                "borderColor": document.documentElement.style.getPropertyValue('--border-color'),
+                "gridBackground": document.documentElement.style.getPropertyValue('--grid-background'),
+                "profile_pic_bg": document.documentElement.style.getPropertyValue('--profile-pic-bg'),
+                "userID":get_user_id()
+            };
+
+            let response = await fetch('http://127.0.0.1:5000/save-theme',{
+                method:'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify(newTheme)
+            }
+            );
+            theme="custom";
+            // console.log("SAVE THEME");
+        }
+        
+        async function pull_Theme(){
+            let response = await fetch(`http://127.0.0.1:5000/get-theme?userID=${get_user_id()}`,{
+                method:'GET',
+                mode:"cors",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            let data = await response.json();
+            // console.log(data);
+
+            document.documentElement.style.setProperty('--background-color', data['backgroundColor']);
+            document.documentElement.style.setProperty('--text-color', data['textColor']);
+            // Update other related colors
+            document.documentElement.style.setProperty('--secondary-text',data['secondaryText']);
+            document.documentElement.style.setProperty('--border-color', data['borderColor']);
+            document.documentElement.style.setProperty('--grid-background', data['gridBackground']);
+            document.documentElement.style.setProperty('--profile-pic-bg', data['profile_pic_bg']);
+
+        }
+
         //adds new post spot to grid 
         function addPost() {
             //appends new html element to grid
@@ -294,6 +403,9 @@
             if (selectedPreset) {
                 selectedPreset.style.border = '2px solid var(--button-color)';
             }
+            if(theme=='custom'){
+                pull_Theme();
+            }
         }
 
         /* this function changes the frame shape */ 
@@ -339,6 +451,8 @@
             } else {
                 grid.style.gap = '15px';
             }
+
+            gridNum = value;
 
         }
 
@@ -438,4 +552,22 @@
                communityNameInput.value = '';
            }
        }
+       function updateCustomColors(bgColor,textColor) {
+    document.documentElement.style.setProperty('--background-color', bgColor);
+    document.documentElement.style.setProperty('--text-color', textColor);
+    //    // Update other related colors
+    document.documentElement.style.setProperty('--secondary-text', adjustColor(textColor, 0.6));
+    document.documentElement.style.setProperty('--border-color', adjustColor(textColor, 0.2));
+    document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
+    document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
+    // Remove any active theme classes
+    document.body.classList.remove('theme-minimal', 'theme-vibrant', 'theme-professional', 'theme-space');
+    }
+
+    function adjustColor(color, opacity) {
+   const r = parseInt(color.substr(1,2), 16);
+   const g = parseInt(color.substr(3,2), 16);
+   const b = parseInt(color.substr(5,2), 16);
+   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
     </script>

@@ -20,23 +20,24 @@ def root():
     return ''
 
 #this function captures the request to save the data to firebase
-@app.route('/save-layout', methods=['POST'])
-def save_layout():
+@app.route('/save-settings', methods=['POST'])
+def save_settings():
     data = request.json
     profile_id = data.get('userID')
     
-    db.collection("grid_layout").document(profile_id).set(data)
+    db.collection("settings").document(profile_id).set(data)
+    return jsonify({"message": "Settings saved successfully"})
 
 #this gets the layout from the firebase, 
 # should be called when rendering profile page
-@app.route('/get-layout', methods = ['GETS'])
-def get_layout():
+@app.route('/get-settings', methods = ['GET','OPTIONS'])
+def get_settings():
     user_id = request.args.get('userID')
 
     if not user_id:
         return jsonify({'error': 'User ID Required'}),400
     
-    doc = db.collection('grid_layout').document(user_id).get()
+    doc = db.collection('settings').document(user_id).get()
 
     return jsonify(doc.to_dict())
 
@@ -46,9 +47,11 @@ def save_theme():
     data = request.json
     profile_id = data.get('userID')
     db.collection("themes").document(profile_id).set(data)
+    return jsonify({"message": "Theme saved successfully"})
+
     
 #this gets the theme for the user's profile
-@app.route('/get-theme',methods=['POST'])
+@app.route('/get-theme',methods=['GET','OPTIONS'])
 def get_theme():
     user_id = request.args.get('userID')
 

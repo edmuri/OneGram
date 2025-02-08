@@ -65,7 +65,8 @@
                     <div class="option-name">Profile Themes</div>
                     <div class="option-description">Change the visual display of your profile</div>
                 </div>
-                <div class="option-item">
+                <!--added onclick function for this submenu option-->
+                <div class="option-item" onclick="openSubmenu('gridMenu')">
                     <div class="option-name">Grid Sizing</div>
                     <div class="option-description">Update the size and display of your Instagram grid</div>
                 </div>
@@ -83,6 +84,16 @@
                 <!-- user clicks and menu is closed -->
                 <button class="back-btn" onclick="closeSubmenu('presetsMenu')">←</button>
                 <h2>Color Presets</h2>
+                <button class="close-btn" onclick="toggleEditPanel()">×</button>
+            </div>
+        </div>
+
+        <!--submenu to control grid layout-->
+        <!--will add the functionality just testing separate submenus first-->
+        <div class="panel-content submenu" id="gridMenu">
+            <div class="edit-panel-header">
+                <button class="back-btn" onclick="closeSubmenu('gridMenu')">←</button>
+                <h2>Grid Layout</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
             </div>
         </div>
@@ -111,6 +122,8 @@
             // takes you back to the main menu when you close
             if (!panel.classList.contains('open')) {
                 closeSubmenu('presetsMenu');
+                //added closing for grid submenu as well
+                closeSubmenu('gridMenu');
             }
         }
 

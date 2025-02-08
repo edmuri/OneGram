@@ -5,4 +5,8 @@
 ## The Gist
 
 ### Features
-- Familiar Instragram-inspired UI with 
+- Familiar Instagram-inspired UI with added customization & personalization
+-- Select from a number of preset color themes that match your style
+-- Custom user profile photo crop and image gallery width size for more personalized profile pages
+- Connect with others of similar interests with "Communities"
+-- 

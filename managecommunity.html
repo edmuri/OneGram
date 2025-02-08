@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
+    <link rel="stylesheet" href="profilepage.css"> <!-- general page styling-->
+</head>
+<body>
+    <!-- this basically uses the same layout as the profile page but i changed the header to be able to hold an image-->
+    <div class="container">
+        <div class="community-header">
+            <div class="header-image"></div>
+            <div class="community-info">
+                <div class="community-details"> <!-- i didnt do any styling for this - might add later but works fine without -->
+                    <h1 class="community-name">make this a fillable thing from the manage</h1>
+                    <div class="stats">
+                        <div class="stat"><span class="stat-number">15.3K</span> members</div>
+                        <div class="stat"><span class="stat-number">234</span> posts</div>
+                        <div class="stat"><span class="stat-number">42</span> online</div>
+                    </div>
+                    <div class="description">
+                        this is the bio i want to fill it with stuff from the buttons 
+                    </div>
+                    <div class="community-actions">
+                        <button class="share-btn">Share</button>
+                        <button class="edit-btn">Edit</button>
+                    </div> <!-- this closes the class with the buttons -->
+                </div> <!-- this closes community details (no css for this)-->
+            </div> <!-- closes community info -->
+        </div> <!-- closes the header -->
+
+        <div class="content-tabs">
+            <div class="tab active">POSTS</div>
+            <div class="tab">EVENTS</div>
+            <div class="tab">RESOURCES</div>
+        </div>
+
+        <div class="grid">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+    </div> <!-- closes the container that holds everything just like the profile page -->
+</body>
+
+<style>
+    /* includes photo and header - including buttons BUT NOT THE REELS AND STUFF */ 
+    .community-header {
+        margin-bottom: 44px;
+    }
+
+    /* the image in the header - fills container */ 
+    .header-image {
+        width: 100%;
+        height: 260px;
+        background-image: url('/someimage/urpathFILLTHIS/backend/fix-this-pls');
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        margin-bottom: 24px;
+    }
+
+    /* the text and buttons in the header */ 
+    .community-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* starts stuff left */ 
+    }
+
+    .community-name {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    /* members and active users and posts stuff - contains all */ 
+    .stats {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: var(--secondary-text);
+    }
+
+    /* makes numbers bolder than the text next to them */ 
+    .stat-number {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    /* just the text for description */ 
+    .description {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    /* contains both the buttons and the margin to the right */ 
+    .community-actions {
+        display: flex;
+        gap: 12px;
+    }
+
+    /* shared button styling */ 
+    .share-btn, .edit-btn {
+        padding: 7px 16px;
+        border-radius: 4px;
+        font-weight: 600; /* this is just bolder */ 
+        font-size: 14px;
+        cursor: pointer; /* clicky clicky */ 
+    }
+
+    /* individual share */ 
+    .share-btn {
+        background-color: var(--button-color);
+        color: white;
+        border: none;
+    }
+
+    /* individual share on hover */ 
+    .share-btn:hover {
+        background-color: var(--button-hover);
+    }
+
+    /* individual edit - no hover */ 
+    .edit-btn {
+        border: 1px solid var(--border-color);
+        background: none;
+        color: var(--text-color);
+    }
+
+    /* reels and stuff */ 
+    .content-tabs {
+        display: flex;
+        border-top: 1px solid var(--border-color);
+        margin-bottom: 24px;
+    }
+
+    /* spacing for reels and stuff tabs */ 
+    .tab {
+        padding: 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--secondary-text);
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-align: center;
+        flex: 1;
+
+    }
+
+    /* when the reels stuff is clicked on */ 
+    .tab.active {
+        color: var(--text-color);
+        border-top: 1px solid var(--text-color);
+        margin-top: -1px;
+    }
+
+    /* just the grid display */ 
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .grid-item {
+        aspect-ratio: 1;
+        background-color: var(--border-color);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+</style>
+</html>

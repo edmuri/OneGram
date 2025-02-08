@@ -20,6 +20,6 @@
 - Back-end:
 - Other/Misc.: 
 
-### Instructions for Running
+## Instructions for Running
 
-### Project Team
+## Project Team

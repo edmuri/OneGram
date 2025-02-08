@@ -73,7 +73,6 @@ def get_communities():
 
     return jsonify(doc.to_dict())
 
-
 @app.route('/add-community',methods=['POST'])
 def add_community():
     community_id = request.arg.get("community")
@@ -83,6 +82,6 @@ def add_community():
     
     db.collection("collections").document(community_id).set(data)
     return jsonify({"message": "Community saved successfully"})
-  
+
 if __name__ == "__main__":
     app.run()

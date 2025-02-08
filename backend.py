@@ -62,5 +62,16 @@ def get_theme():
 
     return jsonify(doc.to_dict())
 
+@app.route('/get-communities-info',methods=['GET'])
+def get_communities():
+    community_id = request.args.get('communities')
+
+    if not community_id:
+        return jsonify({'error': 'User ID Required'}),400
+    
+    doc = db.collection('communities').document(community_id).get()
+
+    return jsonify(doc.to_dict())
+
 if __name__ == "__main__":
     app.run()

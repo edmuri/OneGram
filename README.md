@@ -21,6 +21,7 @@
 - Other/Misc.: 
 
 ## Instructions for Running
+(WIP)
 
 ## Project Team
 - Julia Bowman (Team Lead, Front-end, Conceptualization)

@@ -242,9 +242,8 @@
                 <div class="section-header">
                     <h3>Your Communities</h3>
                 </div>
+              <div class="communities-list" id="communitiesList">
 
-                <div class="communities-list" id="communitiesList">
-                        
                 </div> <!-- closes the communities list -->
             </div> <!-- closes the scroll container for communities -->
         </div> <!-- closes community menu -->
@@ -254,8 +253,10 @@
     <script>
         window.gridNum = 3;
         window.theme = "minimal";
+
         window.communities=[];
         window.communities_info=[];
+
 
          function get_user_id(){
             return "user_123";
@@ -276,7 +277,6 @@
             changeGrid(Number(data['grid']));
             console.log(data);
             setCommunities(data['communities']);
-
 
         }
         pullSettings();
@@ -299,6 +299,7 @@
 
         }
 
+
         async function setCommunities(communities){
             console.log(communities);
             if(communities){
@@ -320,6 +321,11 @@
                 }
                 console.log(window.communities_info);
             }
+        function setCommunities(communities){
+                    for(let i=0;i<communities.length;i++){
+                        window.communities.push(communities[i]);
+                    }
+                }
 
         async function saveNewTheme(){
             let bgColor = document.getElementById("bg-color").value;
@@ -433,6 +439,7 @@
         function openSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.add('open');
+
             createCommunities();
         }
 
@@ -630,6 +637,10 @@
         }
         // creates a community
         async function createCommunity() {
+
+        // creates a community
+        function createCommunity() {
+
            const communityNameInput = document.getElementById('communityName');
            const communityName = communityNameInput.value.trim();
           
@@ -652,6 +663,7 @@
               
                // empty it
                communityNameInput.value = '';
+
                (window.communities).push(communityName);
                 
                let attributes = {
@@ -686,5 +698,27 @@
             const b = parseInt(color.substr(5,2), 16);
             return `rgba(${r}, ${g}, ${b}, ${opacity})`;
             }
+
+           }
+       }
+       function updateCustomColors(bgColor,textColor) {
+    document.documentElement.style.setProperty('--background-color', bgColor);
+    document.documentElement.style.setProperty('--text-color', textColor);
+    //    // Update other related colors
+    document.documentElement.style.setProperty('--secondary-text', adjustColor(textColor, 0.6));
+    document.documentElement.style.setProperty('--border-color', adjustColor(textColor, 0.2));
+    document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
+    document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
+    // Remove any active theme classes
+    document.body.classList.remove('theme-minimal', 'theme-vibrant', 'theme-professional', 'theme-space');
+    }
+
+    function adjustColor(color, opacity) {
+   const r = parseInt(color.substr(1,2), 16);
+   const g = parseInt(color.substr(3,2), 16);
+   const b = parseInt(color.substr(5,2), 16);
+   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
 
     </script>

@@ -1,3 +1,290 @@
+
+    /* default theme */
+    :root {
+        --background-color: #fafafa;
+        --header-gradient: linear-gradient(to right, #ffffff, #f5f5f5);
+        --text-color: #262626;
+        --secondary-text: #8e8e8e;
+        --button-color: #0095f6;
+        --button-hover: #0081d6;
+        --border-color: #dbdbdb;
+        --grid-background: #efefef;
+        --profile-pic-bg: #efefef;
+    }
+
+    /* these are the theme classes */
+    .theme-citrus {
+        --background-color: #fff0f0;
+        --header-gradient: linear-gradient(to right, #ff9a9e, #fad0c4);
+        --text-color: #d4145a;
+        --secondary-text: #ff6b6b;
+        --button-color: #ff4b7d;
+        --button-hover: #ff1a5e;
+        --border-color: #ffc2c2;
+        --grid-background: #ffe5e5;
+        --profile-pic-bg: #ffccd5;
+    }
+
+    .theme-professional {
+        --background-color: #f0f7ff;
+        --header-gradient: linear-gradient(to right, #2193b0, #6dd5ed);
+        --text-color: #1a365d;
+        --secondary-text: #2c5282;
+        --button-color: #2b6cb0;
+        --button-hover: #2c5282;
+        --border-color: #bee3f8;
+        --grid-background: #ebf8ff;
+        --profile-pic-bg: #bee3f8;
+    }
+
+    .theme-space {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #231942, #5e548e);
+        --text-color: #bbb0d8;
+        --secondary-text: #5e548e;
+        --button-color: #9f86c0;
+        --button-hover: #5e548e;
+        --border-color: #e0b1cb;
+        --grid-background: #f8f9fa;
+        --profile-pic-bg: #be95c4;
+    }
+
+    .theme-cherryblossom {
+        --background-color: #f8f9fa;
+        --header-gradient: linear-gradient(to right, #fff4fc, #ffe5f8);
+        --text-color: #9d93b8;
+        --secondary-text: #b8a3b9;
+        --button-color: #dbc4d4;
+        --button-hover: #cca3cf;
+        --border-color: #dbc4d4;
+        --grid-background: #ffeffe;
+        --profile-pic-bg: #ffe5f8;
+    }
+
+    .theme-citybreeze {
+        --background-color: #adeae6;
+        --header-gradient: linear-gradient(to right, #BAD5E7, #233949);
+        --text-color: #233949;
+        --secondary-text: #49434C;
+        --button-color: #2A6EB3;
+        --button-hover: #cca3cf;
+        --border-color: #BAD5E7;
+        --grid-background: #49434C;
+        --profile-pic-bg: #2A6EB3;
+    }
+    .theme-emeraldsplash {
+        --background-color: #1C6752;
+        --header-gradient: linear-gradient(to right, #1DFF8F, #1C6752);
+        --text-color: #14303c;
+        --secondary-text: #9BCCDB;
+        --button-color: #1DFF8F;
+        --button-hover: #A99FB8;
+        --border-color: #BAD5E7;
+        --grid-background: #140d30;
+        --profile-pic-bg: #798b7c;
+    }
+    .theme-cityofstars {
+        --background-color: #201c6f;
+        --header-gradient: linear-gradient(to right, #F5CB26, #321486);
+        --text-color: #000000;
+        --secondary-text: #763f84;
+        --button-color: #070E2D;
+        --button-hover: #F5CB26;
+        --border-color: #F8F7EF;
+        --grid-background: #140d30;
+        --profile-pic-bg: #f0f0f0;
+    }
+    .theme-monotone {
+        --background-color: #7f7f7f;
+        --header-gradient: linear-gradient(to right, #ffffff, #e1e1e1);
+        --text-color: #000000;
+        --secondary-text: #000000;
+        --button-color: #9b9b9b;
+        --button-hover: #3b3b3b;
+        --border-color: #e4e4e4;
+        --grid-background: #333333;
+        --profile-pic-bg: #000000;
+    }
+    .theme-purplerain {
+        --background-color: #635761;
+        --header-gradient: linear-gradient(to right, #e2be59, #EFCC6A);
+        --text-color: #181618;
+        --secondary-text: #2C2B30;
+        --button-color: #635761;
+        --button-hover: #3b3b3b;
+        --border-color: #e4e4e4;
+        --grid-background: #333333;
+        --profile-pic-bg: #DCDDCD;
+    }
+    /* previews for the color schemes */
+    .preset-preview.minimal {
+        background: linear-gradient(45deg, #ffffff 0%, #f5f5f5 100%);
+    }
+
+    .preset-preview.citrus {
+        background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    .preset-preview.professional {
+        background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
+    }
+
+    .preset-preview.space {
+        background: linear-gradient(45deg, #231942 0%, #9f86c0 100%);
+    }
+
+    .preset-preview.cherryblossom {
+        background: linear-gradient(45deg, #ffd8f3 0%, #fff1fb 100%);
+    }
+    .preset-preview.citybreeze {
+        background: linear-gradient(45deg, #233949 0%, #2A6EB3 100%);
+    }
+    .preset-preview.emeraldsplash {
+        background: linear-gradient(45deg, #14303c 0%, #1DFF8F 100%);
+    }
+    .preset-preview.cityofstars {
+        background: linear-gradient(45deg, #F5CB26 0%, #4C2BA5 100%);
+    }
+    .preset-preview.monotone {
+        background: linear-gradient(45deg, #ffffff 0%, #000000 100%);
+    }
+    .preset-preview.purplerain {
+        background: linear-gradient(45deg, #635761 0%, #EFCC6A 100%);
+    }
+
+
+
+    .color-presets {
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .color-preset {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .color-preset:hover {
+        transform: scale(1.02);
+    }
+
+    .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+
+    .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+
+    .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
+    }
+
+    /* headings for text in theme presets */ 
+    .section-header {
+        padding: 20px 16px 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: 16px;
+    }
+
+    /* div that holds all of the custom color content */ 
+    .custom-colors {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        grid-column: 1 / -1;
+        margin: 16px 16px 16px 16px;
+    }
+    
+    .custom-colors:hover {
+        transform: scale(1.02);
+    }
+    
+    .custom-colors .preset-preview {
+        height: 100px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        padding: 16px;
+        background: linear-gradient(45deg, var(--background-color) 0%, var(--grid-background) 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* this is all for the custom colors */ 
+    .control-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* background and text labels */ 
+    .control-group label {
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 500;
+        min-width: 90px;
+    }
+    
+    /* input box for hex stuff */ 
+    .control-group input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background: var(--background-color);
+        color: var(--text-color);
+        max-width: 120px; 
+    }
+    
+    /* button to save the hex input stuff */ 
+    .custom-colors .saveButton {
+        margin-top: 12px;
+        padding: 8px 16px;
+        background-color: var(--button-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        width: 100%;
+        transition: background-color 0.2s ease;
+    }
+    
+    .custom-colors .saveButton:hover {
+        background-color: var(--button-hover);
+    }
+    
+    /* this is just the heading that says 'custom colors' */ 
+    .custom-colors .preset-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+    }
+    
+    /* this is the description under the custom colors header */ 
+    .custom-colors .preset-desc {
+        font-size: 12px;
+        color: var(--secondary-text);
+        margin-bottom: 5px; /* keep it close to the button */ 
+        /* outline: 1px solid green;  */
+    }
+
     /* default theme */
     :root {
         --background-color: #fafafa;

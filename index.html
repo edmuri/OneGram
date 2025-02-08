@@ -242,29 +242,8 @@
                 <div class="section-header">
                     <h3>Your Communities</h3>
                 </div>
+              <div class="communities-list" id="communitiesList">
 
-                <div class="communities-list" id="communitiesList">
-                    <div class="community-item">
-                        <div class="community-info">
-                            <span class="community-name">Big Chungus Lovers</span>
-                            <span class="member-count">1.2K members</span>
-                        </div>
-                        <!-- hardcoded button because the firebase isnt working -->
-                        <!-- <button class="manage-community-btn">Manage</button> this is the old way it was -->
-                        <a href="/greektown.html">
-                            <button class="manage-community-btn">Manage</button>
-                        </a>                    
-                    </div> <!-- closes the community div - this is a preset - CHANGE IT LATER -->
-                    <div class="community-item">
-                        <div class="community-info">
-                            <span class="community-name">UIC Flames</span>
-                            <span class="member-count">856 members</span>
-                        </div> <!-- closes the UIC falems info - placeholder - CHANGE THIS LATER -->
-                        <!-- hardcoded button because the firebase isnt working -->
-                        <a href="/uicflames">
-                            <button class="manage-community-btn">Manage</button>
-                        </a>                    
-                    </div> <!-- closes the community box basically -->
                 </div> <!-- closes the communities list -->
             </div> <!-- closes the scroll container for communities -->
         </div> <!-- closes community menu -->
@@ -274,6 +253,10 @@
     <script>
         window.gridNum = 3;
         window.theme = "minimal";
+
+        window.communities=[];
+        window.communities_info=[];
+
 
          function get_user_id(){
             return "user_123";
@@ -302,6 +285,7 @@
             let settings = {
                 "theme":window.theme,
                 "grid":String(window.gridNum),
+                "communities":window.communities,
                 "userID":get_user_id()
             };
             console.log(settings);
@@ -315,6 +299,28 @@
 
         }
 
+
+        async function setCommunities(communities){
+            console.log(communities);
+            if(communities){
+                    for(let i=0;i<=communities.length-1;i++){
+                        console.log(communities[i]);
+                        (window.communities).push(communities[i]);
+                        
+                        let response = await fetch(`http://127.0.0.1:5000/get-communities-info?communities=${communities[i]}`,{
+                            method:'GET',
+                            mode:"cors",
+                            headers: {
+                                        'Content-Type': 'application/json',
+                                        'Accept': 'application/json'
+                                     }
+                            });
+                        let data = await response.json();
+                        (window.communities_info).push(data);
+                    }
+                }
+                console.log(window.communities_info);
+            }
         function setCommunities(communities){
                     for(let i=0;i<communities.length;i++){
                         window.communities.push(communities[i]);
@@ -433,6 +439,8 @@
         function openSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.add('open');
+
+            createCommunities();
         }
 
         // css to change to close menu 
@@ -587,9 +595,52 @@
             }
         }
         // problems
+        function createCommunities(){
+            if(window.communities){
+            for(let i=0;i<(window.communities).length;i++) {
+                const communityElement = document.createElement('div');
+                communityElement.className = 'community-item';
+                // postElement.innerHTML = `<img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                const community_info = document.createElement('div');
+                community_info.className = 'community-info';
+
+                community_name = document.createElement('span');
+                community_name.classname="community-name";
+                community_name.innerHTML = window.communities[i];
+
+                member_count = document.createElement('span');
+                member_count.classname="member-count";
+
+                if(window.communities_info[i]['num_followers'] != null){
+                    member_count.innerHTML = `${window.communities_info[i]['num_followers']} members`;
+                }
+                community_info.appendChild(community_name);
+                community_info.appendChild(member_count);
+
+                link = document.createElement('a');
+                link.href='/managecommunity.html';
+
+                button = document.createElement('button');
+                button.className="manage-community-btn";
+                button.innerHTML = "Manage";
+                
+                link.appendChild(button);
+
+                
+                communityElement.appendChild(community_info);
+                communityElement.appendChild(link);
+
+                const communititesList = document.getElementById("communitiesList");
+                communitiesList.appendChild(communityElement);
+            }
+        }
+        }
+        // creates a community
+        async function createCommunity() {
 
         // creates a community
         function createCommunity() {
+
            const communityNameInput = document.getElementById('communityName');
            const communityName = communityNameInput.value.trim();
           
@@ -612,6 +663,42 @@
               
                // empty it
                communityNameInput.value = '';
+
+               (window.communities).push(communityName);
+                
+               let attributes = {
+                    "num_followers": 1,
+                    "description":"n/a"
+               }
+
+               let response = await fetch(`http://127.0.0.1:5000/add-community?community=${communityName}`,{
+                method:'POST',
+                mode:'cors',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify(attributes)
+            }
+            );
+           }
+       }
+       function updateCustomColors(bgColor,textColor) {
+            document.documentElement.style.setProperty('--background-color', bgColor);
+            document.documentElement.style.setProperty('--text-color', textColor);
+            //    // Update other related colors
+            document.documentElement.style.setProperty('--secondary-text', adjustColor(textColor, 0.6));
+            document.documentElement.style.setProperty('--border-color', adjustColor(textColor, 0.2));
+            document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
+            document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
+            // Remove any active theme classes
+            document.body.classList.remove('theme-minimal', 'theme-vibrant', 'theme-professional', 'theme-space');
+            }
+
+        function adjustColor(color, opacity) {
+            const r = parseInt(color.substr(1,2), 16);
+            const g = parseInt(color.substr(3,2), 16);
+            const b = parseInt(color.substr(5,2), 16);
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+            }
+
            }
        }
        function updateCustomColors(bgColor,textColor) {
@@ -632,5 +719,6 @@
    const b = parseInt(color.substr(5,2), 16);
    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
+
 
     </script>

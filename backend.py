@@ -9,7 +9,7 @@ CORS(app)
 # @app.route('/name', methods=['POST', 'GET','PUT','DELETE'])
 
 # Load Firebasekey JSON file
-cred = credentials.Certificate("spark-91799-firebase-adminsdk-fbsvc-988dacf8ee.json")
+cred = credentials.Certificate("spark-91799-firebase-adminsdk-fbsvc-c227b6885f.json")
 firebase_admin.initialize_app(cred)
 
 # Initialize Firestore (NoSQL Database)
@@ -38,7 +38,7 @@ def get_settings():
         return jsonify({'error': 'User ID Required'}),400
     
     doc = db.collection('settings').document(user_id).get()
-
+    print("ran")
     return jsonify(doc.to_dict())
 
 #this saves the theme for the user profile
@@ -73,5 +73,16 @@ def get_communities():
 
     return jsonify(doc.to_dict())
 
+
+@app.route('/add-community',methods=['POST'])
+def add_community():
+    community_id = request.arg.get("community")
+    data = request.json
+    if not community_id:
+        return jsonify({'error': 'User ID Required'}),400
+    
+    db.collection("collections").document(community_id).set(data)
+    return jsonify({"message": "Community saved successfully"})
+  
 if __name__ == "__main__":
     app.run()

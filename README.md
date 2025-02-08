@@ -31,3 +31,11 @@ There also required an API key for Flask to work properly.
 - Eduardo Murillo (Git Lead, Back-end, Server Management/DevOps)
 - Jason Carmona (Project Management, Creative Design, QA)
 - Carol Aguilar Torres (Creative Design, Communication, Documentation & Research)
+
+## References
+https://stackoverflow.com/questions/8499633/how-to-display-base64-images-in-html
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+https://flask.palletsprojects.com/en/stable/
+https://firebase.google.com/docs
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse

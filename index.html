@@ -56,7 +56,7 @@
 
         </div>
 
-        <!-- new popup to add posts with title instead of only box, will update to include picture upload -->
+        <!-- updated to now include field for uploading image-->
         <div class="modal" id="addPostModal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,6 +64,10 @@
                     <span class="close-modal" onclick="closeAddPostModal()">×</span>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="postImage">Upload Image</label>
+                        <input type="file" id="postImage" accept="image/*" required>
+                    </div>
                     <div class="form-group">
                         <label for="postTitle">Title</label>
                         <input type="text" id="postTitle" placeholder="Enter post title">
@@ -336,36 +340,49 @@
         //gets the posts array from local storage to display and alter
         let posts = JSON.parse(localStorage.getItem('posts')) || [];
 
-        //function to show popup for adding post
+        //functions to open and close popup to post
         function openAddPostModal() {
             document.getElementById('addPostModal').style.display = 'block';
         }
 
-        //function to close popup
+        //clears popup fields
         function closeAddPostModal() {
             document.getElementById('addPostModal').style.display = 'none';
             document.getElementById('postTitle').value = '';
+            document.getElementById('postImage').value = ''; // Reset image input
         }
 
+        //createPost now updated to upload image as part of newPost to posts array
         function createPost() {
-            const title = document.getElementById('postTitle').value.trim();
+            const title = document.getElementById('postTitle').value;
+            const imageFile = document.getElementById('postImage').files[0];
 
-            const newPost = {
-                title,
+            // converts image to base64 string data
+            // stores that into newPost
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const newPost = {
+                    title,
+                    image: event.target.result 
+                };
+                
+                //
+                posts.unshift(newPost); // add new post to first index of array
+                localStorage.setItem('posts', JSON.stringify(posts)); //stores this array in local storage
+                renderPosts(); //updates the webpage
+                closeAddPostModal(); //closes out popup
+                
+                // update post count
+                const postCountElement = document.querySelector('.stat-number');
+                const currentCount = parseInt(postCountElement.textContent);
+                postCountElement.textContent = currentCount + 1;
             };
 
-            posts.unshift(newPost); // add new post to first index of array
-            localStorage.setItem('posts', JSON.stringify(posts));  //stores this array in local storage
-            renderPosts();  //updates the webpage
-            closeAddPostModal(); //closes out popup
-            
-            // update post count
-            const postCountElement = document.querySelector('.stat-number');
-            const currentCount = parseInt(postCountElement.textContent);
-            postCountElement.textContent = currentCount + 1;
+            // stored data from image now read and turned into image
+            reader.readAsDataURL(imageFile);
         }
 
-        //updates the grid html element printing out each element of posts from local storage
+         //updates the grid html element printing out each element of posts from local storage
         function renderPosts() {
             const grid = document.getElementById('postsGrid');
             grid.innerHTML = '';
@@ -373,7 +390,7 @@
             posts.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'grid-item';
-                postElement.innerHTML = `<img src="/api/placeholder/400/400" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                postElement.innerHTML = `<img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
                 grid.appendChild(postElement);
             });
         }

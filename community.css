@@ -52,16 +52,19 @@
     background-color: var(--bg-color, white);
 }
 
+/* descriptoin of the community */ 
 .community-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
+/* literally just the name */ 
 .community-name {
     font-weight: 500;
 }
 
+/* literally just the number of members in community */ 
 .member-count {
     font-size: 12px;
     color: #666;

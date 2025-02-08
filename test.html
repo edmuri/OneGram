@@ -9,51 +9,54 @@
     <link rel="stylesheet" href="colorpreset.css"> <!-- color presets styling and presets themselves -->
     <link rel="stylesheet" href="profileframe.css"> <!-- frames for profile photo shapes -->
     <link rel="stylesheet" href="grid.css">
-    <link rel="stylesheet" href="community.css"> <!-- css for the community tab -->
-    <link rel="stylesheet" href="footer.css"> <!-- css for the footer static thing -->
-    <link rel="stylesheet" href="profilepic.css"> <!-- profile photo change and modal -->
+    <link rel="stylesheet" href="community.css">
 
 </head>
 <body>
     <div class="container">
         <div class="profile-header">
-            <!-- can now upload file to profile pic image -->
-            <div class="profile-pic" onclick="triggerProfilePicUpload()">
-                <input type="file" id="profilePicInput" accept="image/*" style="display: none" onchange="handleProfilePicUpload(event)">
-                <div class="upload-overlay"></div>
-            </div>
+            <!-- photo is empty for rn -->
+            <div class="profile-pic"></div>
             <div class="profile-info">
                 <div class="username">username</div>
+                <!-- buttons for user to click - edit is the most important here -->
                 <div class="profile-actions">
                     <button class="follow-btn">Follow</button>
                     <button class="edit-btn" onclick="toggleEditPanel()">Edit Profile</button>
-                </div> <!-- closes buttons on profile -->
+                </div>
                 <div class="stats">
+                    <!-- random filler info - might change this -->
                     <div class="stat"><span class="stat-number">123</span> posts</div>
                     <div class="stat"><span class="stat-number">1.2K</span> followers</div>
                     <div class="stat"><span class="stat-number">500</span> following</div>
-                </div> <!-- closes follwer number info -->
+                </div>
                 <div class="bio">
                     Display Name<br>
                     Ur bio<br>
                     <a href="#">linklinkwhatever.com</a>
-                </div> <!-- closes bio -->
-            </div> <!-- closes info in profile -->
-        </div> <!-- closes the profile header -->
+                </div>
+            </div>
+        </div>
 
         <div class="content-tabs">
             <div class="tab active">POSTS</div>
             <div class="tab">REELS</div>
             <div class="tab">TAGGED</div>
-            <div class="tab">COMMUNITIES</div> <!-- i dont think we have time to implement but this would show what communities someone is active in -->
-        </div> <!-- closes the tabs for reels and stuff -->
+        </div>
 
+        <!--button to add post to grid/ must implement functionality-->
+        <div class="grid-controls">
+            <button class="add-post-btn" onclick="openAddPostModal()">
+                <span>+</span> Add New Post
+            </button>
+        </div>
 
-
+        <!-- basic grid for now - want to add different sizing and options -->
         <div class="grid" id="postsGrid">
-        </div> <!-- closes the posts grid -->
 
-        <!-- keep modal in the container -->
+        </div>
+
+        <!-- updated to now include field for uploading image-->
         <div class="modal" id="addPostModal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,100 +76,77 @@
                         <button class="cancel-btn" onclick="closeAddPostModal()">Cancel</button>
                         <button class="submit-btn" onclick="createPost()">Create Post</button>
                     </div>
-                </div> <!-- closes the body of text inside modal -->
-            </div> <!-- closes content inside modal -->
-        </div> <!-- closes popup thing that adds a post -->
+                </div>
+            </div>
+        </div>
 
-        <!-- footer with ability to post a photo -->
-        <div class="footer">
-            <button class="add-post-btn" onclick="openAddPostModal()">
-                <span>+</span> Add New Post
-            </button>
-        </div> <!-- end of footer -->
-    </div> <!-- closes container that holds profile info -->
+    </div>
 
-    <!-- edit panel that's outside of the main containern-- this was issue -->
+    <!-- the edit panel -->
     <div class="edit-panel" id="editPanel">
+        <!-- main edit menu -->
         <div class="panel-content" id="mainMenu">
             <div class="edit-panel-header">
                 <h2>Edit Profile</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div> <!-- closes the panel header (with the close button [no back button here bc nowhere to go back to])-->
+            </div>
             <div class="options-list">
+                <!-- user clicks and menu opens inside the existing edit menu -->
                 <div class="option-item" onclick="openSubmenu('presetsMenu')">
                     <div class="option-name">Profile Themes</div>
                     <div class="option-description">Change the visual display of your profile</div>
-                </div> <!-- closes color presets option -->
+                </div>
+                <!--added onclick function for this submenu option-->
                 <div class="option-item" onclick="openSubmenu('gridMenu')">
                     <div class="option-name">Grid Sizing</div>
                     <div class="option-description">Update the size and display of your Instagram grid</div>
-                </div> <!-- closees grid option -->
+                </div>
                 <div class="option-item" onclick="openSubmenu('communityMenu')">
                     <div class="option-name">Communities</div>
                     <div class="option-description">Create or manage a Community</div>
-                </div> <!-- closes community option -->
-                <button class="save-settings-btn" onclick="save_settings()">SAVE SETTINGS</button>
-            </div> <!-- closes the options list div (contains the three items)-->
-        </div> <!-- closes panel content for main menu (the three options for customizations)-->
+                </div>
+                <button onclick="save_settings()">SAVE SETTINGS</button>
+            </div>
+            
+        </div>
 
+        <!-- submenu that opens inside of menu -->
+        <!-- will add colors -->
         <div class="panel-content submenu" id="presetsMenu">
             <div class="edit-panel-header">
+                <!-- user clicks and menu is closed -->
                 <button class="back-btn" onclick="closeSubmenu('presetsMenu')">←</button>
                 <h2>Color Presets</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div> <!-- closes edit panel header (close and back icons)-->
+            </div>
 
+            <!-- container to allow scroll so we can add way more presets later -->
             <div class="scroll-container">
                 <div class="color-presets">
                     <div class="color-preset" onclick="setTheme('minimal')" data-theme="minimal">
                         <div class="preset-preview minimal"></div>
                         <div class="preset-title">Minimal</div>
                         <div class="preset-desc">Clean and Default</div>
-                    </div> <!-- closes minimal -->
+                    </div>
                     <div class="color-preset" onclick="setTheme('citrus')">
                         <div class="preset-preview citrus"></div>
                         <div class="preset-title">Citrus</div>
                         <div class="preset-desc">Vibrant and Energetic</div>
-                    </div> <!-- closes citrus -->
+                    </div>
                     <div class="color-preset" onclick="setTheme('professional')">
                         <div class="preset-preview professional"></div>
                         <div class="preset-title">Professional</div>
                         <div class="preset-desc">Clear and Clean</div>
-                    </div> <!-- closes professional -->
+                    </div>
                     <div class="color-preset" onclick="setTheme('space')">
                         <div class="preset-preview space"></div>
                         <div class="preset-title">Space</div>
                         <div class="preset-desc">Shooting Star</div>
-                    </div> <!-- closes space -->
+                    </div>
                     <div class="color-preset" onclick="setTheme('cherryblossom')">
                         <div class="preset-preview cherryblossom"></div>
                         <div class="preset-title">Cherry Blossom</div>
                         <div class="preset-desc">Spring and Renewal</div>
-                    </div> <!-- closes cherry blossom -->
-                    <div class="color-preset" onclick="setTheme('citybreeze')">
-                        <div class="preset-preview citybreeze"></div>
-                        <div class="preset-title">City Breeze</div>
-                        <div class="preset-desc">Stop The Noise</div>
-                    </div> <!-- closes city breeze -->
-                    <div class="color-preset" onclick="setTheme('emeraldsplash')">
-                        <div class="preset-preview emeraldsplash"></div>
-                        <div class="preset-title">Emerald Splash</div>
-                        <div class="preset-desc">Brilliant and Beautiful</div>
-                    </div> <!-- closes emerald splash -->
-                    <div class="color-preset" onclick="setTheme('cityofstars')">
-                        <div class="preset-preview cityofstars"></div>
-                        <div class="preset-title">City Of Stars </div>
-                        <div class="preset-desc"> Memories of Summer Sunday Nights</div>
-                    </div> 
-                    <div class="color-preset" onclick="setTheme('monotone')">
-                        <div class="preset-preview monotone"></div>
-                        <div class="preset-title"> Monotone </div>
-                        <div class="preset-desc"> Who Needs Color</div>
-                    </div>
-                    <div class="color-preset" onclick="setTheme('purplerain')">
-                        <div class="preset-preview purplerain"></div>
-                        <div class="preset-title"> Purple Rain </div>
-                        <div class="preset-desc"> Prince And The Revolution </div>
                     </div>
                 </div> <!-- closes color presets -->
 
@@ -180,12 +160,14 @@
                             <label for="text-color">Text:</label>
                             <input id="text-color">
                         </div>
-                    </div> <!-- closes custom preset preview -->
+                    </div>
                     <div class="preset-title">Custom Colors</div>
                     <div class="preset-desc">Create your own color scheme</div>
-                    <button class='saveButton' onclick="saveNewTheme()">Save</button>
-                </div> <!-- closes custom colors preset -->
+                    <button class = 'saveButton' onclick=saveNewTheme()>Save</button>
+                </div>
+            </div>
 
+                <!-- profile photo frame options -->
                 <div class="section-header">
                     <h3>Profile Photo Frames</h3>
                 </div>
@@ -200,62 +182,78 @@
                         <div class="preset-title">Square</div>
                         <div class="preset-desc">Rounded square frame</div>
                     </div>
-                </div> <!-- closes frame presets - keep this inside scroll container so it isn't anchored to the bottom like before -->
-            </div> <!-- closes the scroll container -->
-        </div> <!-- closes preset menu -->
+                </div> <!-- closes frame preset -->
+            </div> <!-- closes scroll container -->
+        </div>
 
+        <!--submenu to control grid layout-->
+        <!--will add the functionality just testing separate submenus first-->
         <div class="panel-content submenu" id="gridMenu">
             <div class="edit-panel-header">
                 <button class="back-btn" onclick="closeSubmenu('gridMenu')">←</button>
                 <h2>Grid Layout</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div> <!-- closes the edit panel header (where the close and back buttons are)-->
+            </div>
 
+            <!--added function to change grid layout and redraw grid-->
             <div class="options-list">
                 <div class="grid-controls">
-                    <label for="grid-size">Select Grid Size</label>
+                    <label for="grid-size">Select Grid Size:</label>
                     <div class="grid-size-buttons">
                         <button class="grid-btn active" onclick="changeGrid(3)">3 x 3</button>
                         <button class="grid-btn" onclick="changeGrid(4)">4 x 4</button>
                         <button class="grid-btn" onclick="changeGrid(5)">5 x 5</button>
                     </div>
-                </div> <!-- closes grid controls-->
-            </div> <!-- closes option list -->
-        </div> <!-- closes the grid menu -->
+                </div>
+            </div>
+        </div>
         
+        <!-- communities for menu option -->
         <div class="panel-content submenu" id="communityMenu">
             <div class="edit-panel-header">
                 <button class="back-btn" onclick="closeSubmenu('communityMenu')">←</button>
                 <h2>Communities</h2>
                 <button class="close-btn" onclick="toggleEditPanel()">×</button>
-            </div> <!-- closes the buttons to go back and close in the header -->
-        
+            </div>
+       
             <div class="scroll-container">
+                <!-- community section -->
                 <div class="section-header2">
                     <h3>Create New Community</h3>
                 </div>
                 <div class="community-form">
                     <input type="text" id="communityName" placeholder="Your community name" class="community-input">
                     <button onclick="createCommunity()" class="create-community-btn">Create</button>
-                </div> <!-- closes the community creation -->
+                </div>
        
+                <!-- active in communities section -->
                 <div class="section-header">
                     <h3>Your Communities</h3>
                 </div>
-
                 <div class="communities-list" id="communitiesList">
-                        
-                </div> <!-- closes the communities list -->
-            </div> <!-- closes the scroll container for communities -->
-        </div> <!-- closes community menu -->
-    </div> <!-- closes edit panel completely -->
-
+                    <!-- ur communities - these are gonna be filled dynamically -->
+                    <div class="community-item">
+                        <div class="community-info">
+                            <span class="community-name">Big Chungus Lovers</span>
+                            <span class="member-count">1.2K members</span>
+                        </div>
+                        <button class="manage-community-btn">Manage</button>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-info">
+                            <span class="community-name">UIC Flames</span>
+                            <span class="member-count">856 members</span>
+                        </div>
+                        <button class="manage-community-btn">Manage</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        window.gridNum = 3;
-        window.theme = "minimal";
-        window.communities=[];
-        window.communities_info=[];
+        let gridNum = 3;
+        let theme = "minimal";
 
          function get_user_id(){
             return "user_123";
@@ -272,20 +270,16 @@
             })
             let data = await response.json();
 
-            setTheme(data['theme']);
-            changeGrid(Number(data['grid']));
-            console.log(data);
-            setCommunities(data['communities']);
-
+            setTheme(data['theme'])
+            // setGrid(data['grid'])
 
         }
         pullSettings();
 
         async function save_settings(){
             let settings = {
-                "theme":window.theme,
-                "grid":String(window.gridNum),
-                "communities":window.communities,
+                "theme":theme,
+                "grid":String(gridNum),
                 "userID":get_user_id()
             };
             console.log(settings);
@@ -296,30 +290,7 @@
                 body: JSON.stringify(settings)
             }
             );
-
         }
-
-        async function setCommunities(communities){
-            console.log(communities);
-            if(communities){
-                    for(let i=0;i<=communities.length-1;i++){
-                        console.log(communities[i]);
-                        (window.communities).push(communities[i]);
-                        
-                        let response = await fetch(`http://127.0.0.1:5000/get-communities-info?communities=${communities[i]}`,{
-                            method:'GET',
-                            mode:"cors",
-                            headers: {
-                                        'Content-Type': 'application/json',
-                                        'Accept': 'application/json'
-                                     }
-                            });
-                        let data = await response.json();
-                        (window.communities_info).push(data);
-                    }
-                }
-                console.log(window.communities_info);
-            }
 
         async function saveNewTheme(){
             let bgColor = document.getElementById("bg-color").value;
@@ -345,7 +316,7 @@
                 body: JSON.stringify(newTheme)
             }
             );
-            window.theme="custom";
+            theme="custom";
             // console.log("SAVE THEME");
         }
         
@@ -386,37 +357,7 @@
             postCountElement.textContent = currentCount + 1;
         }
 
-        // change profile photo 
-        // click on profile pic to upload
-        document.querySelector('.profile-pic').onclick = () => document.getElementById('profilePicInput').click();
-
-        // when the current placeholder changes opens file reader to select new photo
-        document.getElementById('profilePicInput').onchange = function() {
-            //same logic and format as grid post photo upload to store image
-            //also uses cssText to center image
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const profilePic = document.querySelector('.profile-pic');
-                    profilePic.style.cssText = `
-                        background: url(${e.target.result}) center/cover;      
-                    `;
-                    localStorage.setItem('profilePicture', e.target.result);
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-
-        // load the saved profile picture
-        const savedPic = localStorage.getItem('profilePicture');
-        if (savedPic) {
-            document.querySelector('.profile-pic').style.cssText = `
-                background: url(${savedPic}) center/cover;
-            `;
-        }
-
-        // open edit panel when u click edit profile
+        // open edit panel when clicked 'edit profile'
         function toggleEditPanel() {
             const panel = document.getElementById('editPanel');
             panel.classList.toggle('open');
@@ -424,29 +365,27 @@
             // takes you back to the main menu when you close
             if (!panel.classList.contains('open')) {
                 closeSubmenu('presetsMenu');
-                // added closing for grid submenu as well
+                //added closing for grid submenu as well
                 closeSubmenu('gridMenu');
             }
         }
 
-        // function to get css to change so menu is shown
+        /* function to get css to change so menu is shown */
         function openSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.add('open');
-            createCommunities();
         }
 
-        // css to change to close menu 
+        /* css to change to close menu */
         function closeSubmenu(menuId) {
             const submenu = document.getElementById(menuId);
             submenu.classList.remove('open');
         }
-        // end of change profile photo 
 
-        // js to set the preset themes - this changes the colors for the elements
+        /* js to set the preset themes - this changes the colors for the elements */ 
         function setTheme(theme) {
             // take off all existing theme classes
-            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom','theme-citybreeze','theme-emeraldsplash','theme-cityofstars','theme-monotone','theme-purplerain');
+            document.body.classList.remove('theme-minimal', 'theme-citrus', 'theme-professional', 'theme-space', 'theme-cherryblossom');
             
             // add a new theme class if it's not minimal (bc minimal is default)
             if (theme !== 'minimal') {
@@ -464,11 +403,9 @@
             if (selectedPreset) {
                 selectedPreset.style.border = '2px solid var(--button-color)';
             }
-
             if(theme=='custom'){
                 pull_Theme();
             }
-            window.theme = theme;
         }
 
         /* this function changes the frame shape */ 
@@ -515,7 +452,7 @@
                 grid.style.gap = '15px';
             }
 
-            window.gridNum = value;
+            gridNum = value;
 
         }
 
@@ -588,48 +525,9 @@
             }
         }
         // problems
-        function createCommunities(){
-            if(window.communities){
-            for(let i=0;i<(window.communities).length;i++) {
-                const communityElement = document.createElement('div');
-                communityElement.className = 'community-item';
-                // postElement.innerHTML = `<img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
-                const community_info = document.createElement('div');
-                community_info.className = 'community-info';
 
-                community_name = document.createElement('span');
-                community_name.classname="community-name";
-                community_name.innerHTML = window.communities[i];
-
-                member_count = document.createElement('span');
-                member_count.classname="member-count";
-
-                if(window.communities_info[i]['num_followers'] != null){
-                    member_count.innerHTML = `${window.communities_info[i]['num_followers']} members`;
-                }
-                community_info.appendChild(community_name);
-                community_info.appendChild(member_count);
-
-                link = document.createElement('a');
-                link.href='/managecommunity.html';
-
-                button = document.createElement('button');
-                button.className="manage-community-btn";
-                button.innerHTML = "Manage";
-                
-                link.appendChild(button);
-
-                
-                communityElement.appendChild(community_info);
-                communityElement.appendChild(link);
-
-                const communititesList = document.getElementById("communitiesList");
-                communitiesList.appendChild(communityElement);
-            }
-        }
-        }
         // creates a community
-        async function createCommunity() {
+        function createCommunity() {
            const communityNameInput = document.getElementById('communityName');
            const communityName = communityNameInput.value.trim();
           
@@ -652,39 +550,24 @@
               
                // empty it
                communityNameInput.value = '';
-               (window.communities).push(communityName);
-                
-               let attributes = {
-                    "num_followers": 1,
-                    "description":"n/a"
-               }
-
-               let response = await fetch(`http://127.0.0.1:5000/add-community?community=${communityName}`,{
-                method:'POST',
-                mode:'cors',
-                headers: {'Content-Type': 'application/json' },
-                body: JSON.stringify(attributes)
-            }
-            );
            }
        }
        function updateCustomColors(bgColor,textColor) {
-            document.documentElement.style.setProperty('--background-color', bgColor);
-            document.documentElement.style.setProperty('--text-color', textColor);
-            //    // Update other related colors
-            document.documentElement.style.setProperty('--secondary-text', adjustColor(textColor, 0.6));
-            document.documentElement.style.setProperty('--border-color', adjustColor(textColor, 0.2));
-            document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
-            document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
-            // Remove any active theme classes
-            document.body.classList.remove('theme-minimal', 'theme-vibrant', 'theme-professional', 'theme-space');
-            }
+    document.documentElement.style.setProperty('--background-color', bgColor);
+    document.documentElement.style.setProperty('--text-color', textColor);
+    //    // Update other related colors
+    document.documentElement.style.setProperty('--secondary-text', adjustColor(textColor, 0.6));
+    document.documentElement.style.setProperty('--border-color', adjustColor(textColor, 0.2));
+    document.documentElement.style.setProperty('--grid-background', adjustColor(bgColor, 0.95));
+    document.documentElement.style.setProperty('--profile-pic-bg', adjustColor(bgColor, 0.9));
+    // Remove any active theme classes
+    document.body.classList.remove('theme-minimal', 'theme-vibrant', 'theme-professional', 'theme-space');
+    }
 
-        function adjustColor(color, opacity) {
-            const r = parseInt(color.substr(1,2), 16);
-            const g = parseInt(color.substr(3,2), 16);
-            const b = parseInt(color.substr(5,2), 16);
-            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-            }
-
+    function adjustColor(color, opacity) {
+   const r = parseInt(color.substr(1,2), 16);
+   const g = parseInt(color.substr(3,2), 16);
+   const b = parseInt(color.substr(5,2), 16);
+   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
     </script>

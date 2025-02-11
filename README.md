@@ -16,16 +16,15 @@
     - Find others who are into the same things as you do and view all of their related posts in one space
 
 ## Development/Technology/Resources
-- Front-end:
-- Back-end:
-- Other/Misc.: 
+- Front-end: HTML, CSS, JavaScript
+- Back-end: Flask, Python, Firebase
 
 ## Instructions for Running
 (WIP)
 
 ## Project Team
 - Julia Bowman (Team Lead, Front-end, Conceptualization)
-- Basil Tiongson (Back-end, Server Management/DevOps)
-- Eduardo Murillo (Git Lead, Back-end, Server Management/DevOps)
+- Basil Tiongson (Back-end, Server Management)
+- Eduardo Murillo (Git Lead, Back-end, Server Management)
 - Jason Carmona (Project Management, Creative Design, QA)
 - Carol Aguilar Torres (Creative Design, Communication, Documentation & Research)

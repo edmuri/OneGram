@@ -14,9 +14,9 @@
             <div class="header-image"></div>
             <div class="community-info">
                 <div class="community-details"> <!-- i didnt do any styling for this - might add later but works fine without -->
-                    <h1 class="community-name">make this a fillable thing from the manage</h1>
+                    <h1 id="community-name"></h1>
                     <div class="stats">
-                        <div class="stat"><span class="stat-number">15.3K</span> members</div>
+                        <div class="stat"><span class="stat-number" id = "community-members"></span> members</div>
                         <div class="stat"><span class="stat-number">234</span> posts</div>
                         <div class="stat"><span class="stat-number">42</span> online</div>
                     </div>
@@ -58,7 +58,7 @@
     .header-image {
         width: 100%;
         height: 260px;
-        background-image: url('/someimage/urpathFILLTHIS/backend/fix-this-pls');
+        background-image: url('greatwhiteshark.jpg');
         background-size: cover;
         background-position: center;
         border-radius: 8px;
@@ -72,7 +72,7 @@
         align-items: flex-start; /* starts stuff left */ 
     }
 
-    .community-name {
+    #community-name {
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 12px;
@@ -177,7 +177,7 @@
 </style>
 
 <script>
-    window.community_attributes="";
+    window.community_attributes=[];
     
     async function loadAttributes(){
 
@@ -192,7 +192,7 @@
             let data = await response.json();
             console.log(data);
 
-        let response2 = await fetch(`http://127.0.0.1:5000/get-community-info?community=${data}`,{
+        let response2 = await fetch(`http://127.0.0.1:5000/get-communities-info?communities=${data['community']}`,{
                 method:'GET',
                 mode:"cors",
                 headers: {
@@ -200,8 +200,11 @@
                     'Accept': 'application/json'
                 }
             })
-            let data2 = await response.json();
-            window.community_attributes=data2;
+            let data2 = await response2.json();
+            console.log(data2);
+            
+            document.getElementById("community-name").innerHTML = data['community'];
+            document.getElementById("community-members").innerHTML = data2['num_followers'];
     }
     loadAttributes();
 

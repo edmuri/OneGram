@@ -352,8 +352,9 @@ function createCommunities(){
             link = document.createElement('a');
             link.className = 'pageLink';
             link.id = `${(window.communities[i])}`;
-            link.href='/managecommunity.html';
-            link.onclick=`populatePageNum(id)`
+            link.setAttribute('onclick',`populatePageNum('${window.communities[i]}')`);
+             link.href='/managecommunity.html';
+            
 
             button = document.createElement('button');
             button.className="manage-community-btn";
@@ -371,14 +372,31 @@ function createCommunities(){
     }
 }
 
-async function populatePageNum(community_id){
-    let response = await fetch(`http://127.0.0.1:5000/set-page-num?communityID=${community_id}`,{
-            method:'POST',
-            mode:'cors',
-            headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify(settings)
-            });
+ async function populatePageNum(community_id){
+    console.log(`PRINTING: ${community_id}`);
+
+    let community = {
+        "community": community_id
+    };
+
+    const response = await fetch('http://127.0.0.1:5000/set-page-num',{
+        method:'POST',
+        mode:'cors',
+        headers:{'Content-Type': 'application/json',
+                'Accept':'application/json'
+        },
+        body: JSON.stringify(community)
+    });
+
+    const data = await response.json();
+
+    
+
+
+    
 }
+
+
         
         // creates a community
 async function createCommunity() {
@@ -425,9 +443,7 @@ async function createCommunity() {
             });
            }
        }
-document.querySelectorAll('.pageLink').forEach(function(element) {
-                                        element.addEventListener('click', function() {
-                                        populatePageNum(this.id);});});
+// document.querySelectorAll('.pageLinks').forEach(element.addEventListener('click',populatePageNum(element.id)));
 
 
 function updateCustomColors(bgColor,textColor) {

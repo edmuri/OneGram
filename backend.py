@@ -4,7 +4,14 @@ from firebase_admin import credentials, firestore
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://127.0.0.1:5501"],  # Your frontend URL
+        "methods": ["GET", "POST", "OPTIONS"],  # Allowed methods
+        "allow_headers": ["Content-Type"]       # Allowed headers
+    }
+})
 
 # @app.route('/name', methods=['POST', 'GET','PUT','DELETE'])
 
@@ -36,9 +43,9 @@ def get_settings():
 
     if not user_id:
         return jsonify({'error': 'User ID Required'}),400
-    print("running")
+    # print("running")
     doc = db.collection('settings').document(user_id).get()
-    print("ran")
+    # print("ran")
     return jsonify(doc.to_dict())
 
 #this saves the theme for the user profile
@@ -84,20 +91,20 @@ def add_community():
 
 @app.route('/set-page-num',methods=['POST'])
 def set_page_num():
-    community_id = request.args.get("communityID")
-    
-    if not community_id:
+    data = request.json
+    print(data)
+
+    if not data:
         return jsonify({"error":"Community Required"})
     print("HELLO")
-    db.collection('page').document(community_id).set(community_id)
+    db.collection('page').document("temp").set(data)
     print("HI")
     return jsonify({"message": "Community saved successfully"})
 
 @app.route('/get-page-type',methods=['GET'])
 def get_page_type():
-    doc = db.collection('page').get()
-    print(doc)
-    return jsonify(doc)
+    doc = db.collection('page').document("temp").get()
+    return jsonify(doc.to_dict())
 
 if __name__ == "__main__":
     app.run()

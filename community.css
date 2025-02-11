@@ -1,49 +1,51 @@
-
-/* this is the communities submenu styling */ 
-/* had to make a section header 2 because the top line in 1 was ugly and gross */ 
+/* this is the communities submenu styling */
+/* had to make a section header 2 because the top line in 1 was ugly and gross */
 .section-header2 {
     padding: 20px 16px 0;
     margin-top: 5px;
-}
-
-.community-form {
-    padding: 20px 20px 20px;
+ }
+ 
+ .community-form {
+    padding: 20px;
+    /* padding: 20px 20px 20px; */
     display: flex;
+    flex-direction: column;
     gap: 10px;
-}
-
-/* input box */ 
-.community-input {
+ }
+ 
+ /* input box */
+ .community-input {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 14px;
-}
-
-.create-community-btn {
+ }
+ 
+ .create-community-btn {
     padding: 8px 16px;
     background-color: var(--button-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.create-community-btn:hover {
+ }
+ 
+ .create-community-btn:hover {
     opacity: 0.9;
-}
-
-/* actual list of communtiies */ 
-.communities-list {
-    padding: 20px 20px;
+ }
+ 
+ /* actual list of communtiies */
+ .communities-list {
+    padding: 20px;
+    /* padding: 20px 20px; */
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-/* change with theme */
-.community-item {
+ }
+ 
+ /* change with theme */
+ .community-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,27 +53,27 @@
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: var(--bg-color, white);
-}
-
-/* descriptoin of the community */ 
-.community-info {
+ }
+ 
+ /* descriptoin of the community */
+ .community-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-/* literally just the name */ 
-.community-name {
+ }
+ 
+ /* literally just the name */
+ .community-name {
     font-weight: 500;
-}
-
-/* literally just the number of members in community */ 
-.member-count {
+ }
+ 
+ /* literally just the number of members in community */
+ .member-count {
     font-size: 12px;
     color: #666;
-}
-
-.manage-community-btn {
+ }
+ 
+ .manage-community-btn {
     padding: 6px 12px;
     background-color: transparent;
     border: 1px solid var(--button-color);
@@ -79,63 +81,63 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-}
-
-.manage-community-btn:hover {
+ }
+ 
+ .manage-community-btn:hover {
     background-color: var(--button-color);
     color: white;
-}
-
-/* last item padding */
-.communities-list {
+ }
+ 
+ /* last item padding */
+ .communities-list {
     padding-bottom: 20px;
-}
-
-/* this is the communities submenu styling */ 
-/* had to make a section header 2 because the top line in 1 was ugly and gross */ 
-.section-header2 {
+ }
+ 
+ /* this is the communities submenu styling */
+ /* had to make a section header 2 because the top line in 1 was ugly and gross */
+ .section-header2 {
     padding: 20px 16px 0;
     margin-top: 5px;
-}
-
-.community-form {
+ }
+ 
+ .community-form {
     padding: 20px 20px 20px;
     display: flex;
     gap: 10px;
-}
-
-/* input box */ 
-.community-input {
+ }
+ 
+ /* input box */
+ .community-input {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 14px;
-}
-
-.create-community-btn {
+ }
+ 
+ .create-community-btn {
     padding: 8px 16px;
     background-color: var(--button-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.create-community-btn:hover {
+ }
+ 
+ .create-community-btn:hover {
     opacity: 0.9;
-}
-
-/* actual list of communtiies */ 
-.communities-list {
+ }
+ 
+ /* actual list of communtiies */
+ .communities-list {
     padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-/* change with theme */
-.community-item {
+ }
+ 
+ /* change with theme */
+ .community-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -143,27 +145,27 @@
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: var(--bg-color, white);
-}
-
-/* descriptoin of the community */ 
-.community-info {
+ }
+ 
+ /* descriptoin of the community */
+ .community-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-/* literally just the name */ 
-.community-name {
+ }
+ 
+ /* literally just the name */
+ .community-name {
     font-weight: 500;
-}
-
-/* literally just the number of members in community */ 
-.member-count {
+ }
+ 
+ /* literally just the number of members in community */
+ .member-count {
     font-size: 12px;
     color: #666;
-}
-
-.manage-community-btn {
+ }
+ 
+ .manage-community-btn {
     padding: 6px 12px;
     background-color: transparent;
     border: 1px solid var(--button-color);
@@ -171,14 +173,15 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-}
-
-.manage-community-btn:hover {
+ }
+ 
+ .manage-community-btn:hover {
     background-color: var(--button-color);
     color: white;
-}
-
-/* last item padding */
-.communities-list {
+ }
+ 
+ /* last item padding */
+ .communities-list {
     padding-bottom: 20px;
-}
+ }
+ 
